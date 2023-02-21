@@ -6,7 +6,7 @@ export const RepairAPI = superclass =>
             return response;
         }
 
-        async createRepair(objectId, payload) {
+        async createRepair(payload) {
             const url = `${this.baseUrl}repairs`;
             const response = await this.post(url, { dataJ: payload });
             return response;
