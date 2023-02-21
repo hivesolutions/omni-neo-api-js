@@ -1,3 +1,3 @@
 export declare interface UserAPI {
-    selfUser(options: object): Promise<object>;
+    selfUser(options?: object): Promise<object>;
 }
