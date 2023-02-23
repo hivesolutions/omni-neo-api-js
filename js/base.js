@@ -50,7 +50,7 @@ export class API extends mix(YoniusAPI).with(UserAPI, StoreAPI, RepairAPI, SaleS
     async login(username = undefined, password = undefined) {
         username = username !== undefined ? username : this.username;
         password = password !== undefined ? password : this.password;
-        const url = `${this.baseUrl}omni/login.json`;
+        const url = `${this.baseUrl}login`;
         const contents = await this.post(url, {
             params: {
                 username: username,
@@ -74,7 +74,7 @@ export class API extends mix(YoniusAPI).with(UserAPI, StoreAPI, RepairAPI, SaleS
     }
 
     async ping() {
-        const url = `${this.baseUrl}omni/ping.json`;
+        const url = `${this.baseUrl}ping`;
         const contents = await this.get(url, { auth: false });
         return contents;
     }

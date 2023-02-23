@@ -1,10 +1,5 @@
-export class Base {
-    id?: string;
-    object_id?: number;
-    created?: number;
-    modified?: number;
-    meta?: Record<string, unknown>;
-}
+import { APIOptions } from "yonius";
+import { BaseNeo } from "./base";
 
 export enum RepairStatus {
     opened = "opened",
@@ -12,7 +7,14 @@ export enum RepairStatus {
     rejected = "rejected"
 }
 
-export class Repair extends Base {
+export class Repair extends BaseNeo {
+    status: RepairStatus;
+    owner: number;
+    employee: number;
+    comment: string;
+}
+
+export class RepairPayload extends BaseNeoPayload {
     status?: RepairStatus;
     owner?: number;
     employee?: number;
@@ -20,9 +22,9 @@ export class Repair extends Base {
 }
 
 export declare interface RepairAPI {
-    listRepairs(options?: object): Promise<Repair[]>;
-    createRepair(payload: Repair): Promise<Repair>;
-    getRepair(objectId: number, options?: object): Promise<Repair>;
-    updateRepair(objectId: number, payload: object): Promise<Repair>;
-    deleteRepair(objectId: number, options?: object): Promise<Record<string, unknown>>;
+    listRepairs(options?: APIOptions): Promise<Repair[]>;
+    createRepair(payload: RepairPayload): Promise<Repair>;
+    getRepair(objectId: number, options?: APIOptions): Promise<Repair>;
+    updateRepair(objectId: number, payload: RepairPayload): Promise<Repair>;
+    deleteRepair(objectId: number, options?: APIOptions): Promise<Record<string, unknown>>;
 }

@@ -1,26 +1,52 @@
 import { API as BaseAPI } from "yonius";
 
-import { UserAPI } from "./user";
-import { StoreAPI } from "./store";
+import { User, UserAPI } from "./user";
+import { Store, StoreAPI } from "./store";
 import { Repair, RepairAPI } from "./repair";
-import { SaleSnapshotAPI } from "./sale-snapshot";
+import { SaleSnapshot, SaleSnapshotAPI } from "./sale-snapshot";
 
-interface APIInterface extends UserAPI, StoreAPI, RepairAPI, SaleSnapshotAPI {
+export class Base {
+    object_id?: number;
+    created?: number;
+    modified?: number;
+    meta?: Record<string, unknown>;
+    [x: string]: unknown;
+}
+
+export class BaseNeo {
+    id: string;
+    object_id: number;
+    created: number;
+    modified: number;
+    meta: Record<string, unknown>;
+    [x: string]: unknown;
+}
+
+export class BaseNeoPayload {
+    id?: string;
+    object_id?: number;
+    created?: number;
+    modified?: number;
+    meta?: Record<string, unknown>;
+    [x: string]: unknown;
+}
+
+export interface APIInterface extends UserAPI, StoreAPI, RepairAPI, SaleSnapshotAPI {
     ping(): Promise<object>;
 }
 
 export declare class API extends BaseAPI implements APIInterface {
     ping(): Promise<object>;
 
-    selfUser(options?: object): Promise<object>;
+    selfUser(options?: APIOptions): Promise<User>;
 
-    listStores(options?: object): Promise<object[]>;
+    listStores(options?: APIOptions): Promise<Store[]>;
 
-    listRepairs(options?: object): Promise<Repair[]>;
+    listRepairs(options?: APIOptions): Promise<Repair[]>;
     createRepair(payload: Repair): Promise<Repair>;
-    getRepair(objectId: number, options?: object): Promise<Repair>;
-    updateRepair(objectId: number, payload: object): Promise<Repair>;
-    deleteRepair(objectId: number, options?: object): Promise<Record<string, unknown>>;
+    getRepair(objectId: number, options?: APIOptions): Promise<Repair>;
+    updateRepair(objectId: number, payload: Repair): Promise<Repair>;
+    deleteRepair(objectId: number, options?: APIOptions): Promise<Record<string, unknown>>;
 
-    statsSaleSnapshot(options?: object): Promise<object[]>;
+    statsSaleSnapshot(options?: APIOptions): Promise<SaleSnapshot[]>;
 }
