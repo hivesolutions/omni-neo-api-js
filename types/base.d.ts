@@ -1,8 +1,8 @@
-import { API as BaseAPI } from "yonius";
+import { API as BaseAPI, APIOptions } from "yonius";
 
 import { User, UserAPI } from "./user";
 import { Store, StoreAPI } from "./store";
-import { Repair, RepairAPI } from "./repair";
+import { Repair, RepairAPI, RepairPayload } from "./repair";
 import { SaleSnapshot, SaleSnapshotAPI } from "./sale-snapshot";
 
 export class Base {
@@ -43,9 +43,9 @@ export declare class API extends BaseAPI implements APIInterface {
     listStores(options?: APIOptions): Promise<Store[]>;
 
     listRepairs(options?: APIOptions): Promise<Repair[]>;
-    createRepair(payload: Repair): Promise<Repair>;
+    createRepair(payload: RepairPayload): Promise<Repair>;
     getRepair(objectId: number, options?: APIOptions): Promise<Repair>;
-    updateRepair(objectId: number, payload: Repair): Promise<Repair>;
+    updateRepair(objectId: number, payload: RepairPayload): Promise<Repair>;
     deleteRepair(objectId: number, options?: APIOptions): Promise<Record<string, unknown>>;
 
     statsSaleSnapshot(options?: APIOptions): Promise<SaleSnapshot[]>;
