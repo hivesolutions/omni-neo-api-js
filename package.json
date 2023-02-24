@@ -1,6 +1,6 @@
 {
     "name": "omni-neo-api",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "The Omni Neo API client",
     "keywords": [
         "api",
