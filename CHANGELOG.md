@@ -9,8 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* Support for separate payload handling
-* More TypeScript types
+*
 
 ### Changed
 
@@ -19,6 +18,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 *
+
+## [0.1.3] - 2023-02-24
+
+### Added
+
+* Support for separate payload handling
+* More TypeScript types
 
 ## [0.1.2] - 2023-02-24
 
