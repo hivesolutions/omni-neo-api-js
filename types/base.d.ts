@@ -36,6 +36,12 @@ export interface APIInterface extends UserAPI, StoreAPI, RepairAPI, SaleSnapshot
 }
 
 export declare class API extends BaseAPI implements APIInterface {
+    username?: string | null;
+    sessionId?: string | null;
+    tokens?: string[] | null;
+
+    login(username: string, password: string): Promise<Record<string, unknown>>;
+    isAuth(): boolean;
     ping(): Promise<object>;
 
     selfUser(options?: APIOptions): Promise<User>;
