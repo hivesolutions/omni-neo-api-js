@@ -4,7 +4,16 @@ import { BaseNeo, BaseNeoPayload } from "./base";
 export enum RepairStatus {
     opened = "opened",
     approved = "approved",
-    rejected = "rejected"
+    rejected = "rejected",
+    quotation = "quotation",
+    received = "received",
+    sent = "sent",
+    closed = "closed",
+}
+
+export enum RepairType {
+    warranty = "warranty",
+    quotation = "quotation",
 }
 
 export class Repair extends BaseNeo {
@@ -12,6 +21,8 @@ export class Repair extends BaseNeo {
     status: RepairStatus;
     owner: number;
     employee: number;
+    customer?: string;
+    supplier?: string;
     description?: string;
 }
 
@@ -20,6 +31,8 @@ export class RepairPayload extends BaseNeoPayload {
     status?: RepairStatus;
     owner?: number;
     employee?: number;
+    customer?: string;
+    supplier?: string;
     description?: string;
 }
 
