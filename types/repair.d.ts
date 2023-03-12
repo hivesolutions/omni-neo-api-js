@@ -23,7 +23,15 @@ export class Repair extends BaseNeo {
     employee: number;
     customer?: string;
     supplier?: string;
+    item_reference?: string;
+    sale_identifier?: string;
+    repair_type: RepairType;
+    item_damage?: string;
+    problem_description?: string;
+    repair_description?: string;
     description?: string;
+    amount?: number;
+    currency?: string;
 }
 
 export class RepairPayload extends BaseNeoPayload {
@@ -33,7 +41,15 @@ export class RepairPayload extends BaseNeoPayload {
     employee?: number;
     customer?: string;
     supplier?: string;
+    item_reference?: string;
+    sale_identifier?: string;
+    repair_type?: RepairType;
+    item_damage?: string;
+    problem_description?: string;
+    repair_description?: string;
     description?: string;
+    amount?: number;
+    currency?: string;
 }
 
 export declare interface RepairAPI {
