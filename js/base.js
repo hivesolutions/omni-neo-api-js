@@ -3,10 +3,17 @@ import { UserAPI } from "./user";
 import { StoreAPI } from "./store";
 import { RepairAPI } from "./repair";
 import { SaleSnapshotAPI } from "./sale-snapshot";
+import { RepairReferenceAPI } from "./repair-reference";
 
 const BASE_URL = "http://localhost:8080/";
 
-export class API extends mix(YoniusAPI).with(UserAPI, StoreAPI, RepairAPI, SaleSnapshotAPI) {
+export class API extends mix(YoniusAPI).with(
+    UserAPI,
+    StoreAPI,
+    RepairAPI,
+    SaleSnapshotAPI,
+    RepairReferenceAPI
+) {
     constructor(kwargs = {}) {
         super(kwargs);
         this.baseUrl = conf("OMNI_BASE_URL", BASE_URL);

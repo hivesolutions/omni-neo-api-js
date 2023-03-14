@@ -8,12 +8,12 @@ export enum RepairStatus {
     quotation = "quotation",
     received = "received",
     sent = "sent",
-    closed = "closed",
+    closed = "closed"
 }
 
 export enum RepairType {
     warranty = "warranty",
-    quotation = "quotation",
+    quotation = "quotation"
 }
 
 export class Repair extends BaseNeo {
