@@ -4,6 +4,12 @@ import { User, UserAPI } from "./user";
 import { Store, StoreAPI } from "./store";
 import { Repair, RepairAPI, RepairPayload } from "./repair";
 import { SaleSnapshot, SaleSnapshotAPI } from "./sale-snapshot";
+import {
+    RepairReference,
+    RepairReferenceAPI,
+    RepairReferencePayload,
+    RepairSlip
+} from "./repair-reference";
 
 export class Base {
     object_id?: number;
@@ -31,7 +37,12 @@ export class BaseNeoPayload {
     [x: string]: unknown;
 }
 
-export interface APIInterface extends UserAPI, StoreAPI, RepairAPI, SaleSnapshotAPI {
+export interface APIInterface
+    extends UserAPI,
+        StoreAPI,
+        RepairAPI,
+        SaleSnapshotAPI,
+        RepairReferenceAPI {
     ping(): Promise<object>;
 }
 
@@ -55,4 +66,9 @@ export declare class API extends BaseAPI implements APIInterface {
     deleteRepair(objectId: number, options?: APIOptions): Promise<Record<string, unknown>>;
 
     statsSaleSnapshot(options?: APIOptions): Promise<SaleSnapshot[]>;
+
+    listRepairReferences(options?: APIOptions): Promise<RepairReference[]>;
+    createRepairReference(payload: RepairReferencePayload): Promise<RepairReference>;
+    getRepairReference(objectId: number, options?: APIOptions): Promise<RepairReference>;
+    issueRepairSlipRepairReference(objectId: number, payload: RepairPayload): Promise<RepairSlip>;
 }
