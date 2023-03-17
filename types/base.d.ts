@@ -28,7 +28,7 @@ export class BaseNeo {
     [x: string]: unknown;
 }
 
-export class BaseNeoPayload {
+export class BaseNeoDelta {
     id?: string;
     object_id?: number;
     created?: number;
@@ -70,5 +70,5 @@ export declare class API extends BaseAPI implements APIInterface {
     listRepairReferences(options?: APIOptions): Promise<RepairReference[]>;
     createRepairReference(payload: RepairReferencePayload): Promise<RepairReference>;
     getRepairReference(objectId: number, options?: APIOptions): Promise<RepairReference>;
-    issueRepairSlipRepairReference(objectId: number, payload: RepairPayload): Promise<RepairSlip>;
+    issueRepairSlipRepairReference(objectId: number, options?: APIOptions): Promise<RepairSlip>;
 }

@@ -1,5 +1,5 @@
 import { APIOptions } from "yonius";
-import { BaseNeo, BaseNeoPayload } from "./base";
+import { BaseNeo, BaseNeoDelta } from "./base";
 
 export enum RepairStatus {
     opened = "opened",
@@ -34,7 +34,7 @@ export class Repair extends BaseNeo {
     currency?: string;
 }
 
-export class RepairPayload extends BaseNeoPayload {
+export class RepairDelta extends BaseNeoDelta {
     title?: string;
     status?: RepairStatus;
     owner?: number;
@@ -50,6 +50,10 @@ export class RepairPayload extends BaseNeoPayload {
     description?: string;
     amount?: number;
     currency?: string;
+}
+
+export class RepairPayload {
+    repair: RepairDelta;
 }
 
 export declare interface RepairAPI {

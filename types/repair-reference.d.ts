@@ -1,14 +1,18 @@
 import { APIOptions } from "yonius";
-import { BaseNeo, BaseNeoPayload } from "./base";
+import { BaseNeo, BaseNeoDelta } from "./base";
 
 export class RepairReference extends BaseNeo {
     owner: number;
     reference_payload: Record<string, unknown>;
 }
 
-export class RepairReferencePayload extends BaseNeoPayload {
+export class RepairReferenceDelta extends BaseNeoDelta {
     owner?: number;
     reference_payload?: Record<string, unknown>;
+}
+
+export class RepairReferencePayload {
+    repair_reference?: RepairReferenceDelta;
 }
 
 export class RepairSlip extends BaseNeo {}
