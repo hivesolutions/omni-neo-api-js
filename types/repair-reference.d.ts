@@ -17,5 +17,5 @@ export declare interface RepairReferenceAPI {
     listRepairReferences(options?: APIOptions): Promise<RepairReference[]>;
     createRepairReference(payload: RepairReferencePayload): Promise<RepairReference>;
     getRepairReference(objectId: number, options?: APIOptions): Promise<RepairReference>;
-    issueRepairSlipRepairReference(objectId: number, payload: RepairPayload): Promise<RepairSlip>;
+    issueRepairSlipRepairReference(objectId: number, options?: APIOptions): Promise<RepairSlip>;
 }
