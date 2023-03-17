@@ -3,11 +3,13 @@ import { BaseNeo, BaseNeoDelta } from "./base";
 
 export class RepairReference extends BaseNeo {
     owner: number;
+    reference_id: string;
     reference_payload: Record<string, unknown>;
 }
 
 export class RepairReferenceDelta extends BaseNeoDelta {
     owner?: number;
+    reference_id?: string;
     reference_payload?: Record<string, unknown>;
 }
 
