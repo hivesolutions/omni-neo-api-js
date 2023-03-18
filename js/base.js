@@ -2,6 +2,7 @@ import { API as YoniusAPI, mix, load, conf } from "yonius";
 import { UserAPI } from "./user";
 import { StoreAPI } from "./store";
 import { RepairAPI } from "./repair";
+import { MerchandiseAPI } from "./merchandise";
 import { SaleSnapshotAPI } from "./sale-snapshot";
 import { RepairReferenceAPI } from "./repair-reference";
 
@@ -11,6 +12,7 @@ export class API extends mix(YoniusAPI).with(
     UserAPI,
     StoreAPI,
     RepairAPI,
+    MerchandiseAPI,
     SaleSnapshotAPI,
     RepairReferenceAPI
 ) {

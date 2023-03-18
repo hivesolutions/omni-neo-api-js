@@ -3,6 +3,7 @@ import { API as BaseAPI, APIOptions } from "yonius";
 import { User, UserAPI } from "./user";
 import { Store, StoreAPI } from "./store";
 import { Repair, RepairAPI, RepairPayload } from "./repair";
+import { Merchandise, MerchandisePayload, MerchandiseAPI } from "./merchandise";
 import { SaleSnapshot, SaleSnapshotAPI } from "./sale-snapshot";
 import {
     RepairReference,
@@ -12,6 +13,14 @@ import {
 } from "./repair-reference";
 
 export class Base {
+    object_id: number;
+    created: number;
+    modified: number;
+    meta?: Record<string, unknown>;
+    [x: string]: unknown;
+}
+
+export class BaseDelta {
     object_id?: number;
     created?: number;
     modified?: number;
@@ -41,6 +50,7 @@ export interface APIInterface
     extends UserAPI,
         StoreAPI,
         RepairAPI,
+        MerchandiseAPI,
         SaleSnapshotAPI,
         RepairReferenceAPI {
     ping(): Promise<object>;
@@ -65,6 +75,10 @@ export declare class API extends BaseAPI implements APIInterface {
     updateRepair(objectId: number, payload: RepairPayload): Promise<Repair>;
     deleteRepair(objectId: number, options?: APIOptions): Promise<Record<string, unknown>>;
     importRepair(objectId: number, options?: APIOptions): Promise<RepairReference>;
+
+    listMerchandise(options?: APIOptions): Promise<Merchandise[]>;
+    updateMerchandise(payload: MerchandisePayload): Promise<Merchandise>;
+    listStoreMerchandise(storeId: number, options?: APIOptions): Promise<Merchandise[]>;
 
     statsSaleSnapshot(options?: APIOptions): Promise<SaleSnapshot[]>;
 
