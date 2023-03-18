@@ -1,4 +1,5 @@
 export * from "./base";
+export * from "./entity";
 export * from "./repair";
 export * from "./merchandise";
 export * from "./repair-reference";

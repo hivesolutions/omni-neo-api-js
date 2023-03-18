@@ -1,6 +1,7 @@
 import { API as YoniusAPI, mix, load, conf } from "yonius";
 import { UserAPI } from "./user";
 import { StoreAPI } from "./store";
+import { EntityAPI } from "./entity";
 import { RepairAPI } from "./repair";
 import { MerchandiseAPI } from "./merchandise";
 import { SaleSnapshotAPI } from "./sale-snapshot";
@@ -11,6 +12,7 @@ const BASE_URL = "http://localhost:8080/";
 export class API extends mix(YoniusAPI).with(
     UserAPI,
     StoreAPI,
+    EntityAPI,
     RepairAPI,
     MerchandiseAPI,
     SaleSnapshotAPI,

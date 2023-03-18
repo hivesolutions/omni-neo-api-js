@@ -11,7 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * The reference ID field to RepairReference
 * Import repair method support
-* Initial support for the `Merchandise` entity
+* Initial support for the `Merchandise` model entity
+* Initial support for the `Entity` model entity
 
 ### Changed
 
