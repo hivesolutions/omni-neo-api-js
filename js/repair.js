@@ -29,6 +29,12 @@ export const RepairAPI = superclass =>
             const response = await this.delete(url, options);
             return response;
         }
+
+        async importRepair(objectId, options = {}) {
+            const url = `${this.baseUrl}repairs/${objectId}/import`;
+            const response = await this.put(url, options);
+            return response;
+        }
     };
 
 export default RepairAPI;

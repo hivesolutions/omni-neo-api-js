@@ -64,6 +64,7 @@ export declare class API extends BaseAPI implements APIInterface {
     getRepair(objectId: number, options?: APIOptions): Promise<Repair>;
     updateRepair(objectId: number, payload: RepairPayload): Promise<Repair>;
     deleteRepair(objectId: number, options?: APIOptions): Promise<Record<string, unknown>>;
+    importRepair(objectId: number, options?: APIOptions): Promise<RepairReference>;
 
     statsSaleSnapshot(options?: APIOptions): Promise<SaleSnapshot[]>;
 

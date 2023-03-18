@@ -1,5 +1,6 @@
 import { APIOptions } from "yonius";
 import { BaseNeo, BaseNeoDelta } from "./base";
+import { RepairReference } from "./repair-reference";
 
 export enum RepairStatus {
     opened = "opened",
@@ -32,9 +33,12 @@ export class Repair extends BaseNeo {
     description?: string;
     amount?: number;
     currency?: string;
+    imported?: boolean;
+    import_date?: number;
+    reference_oid?: number;
 }
 
-export class RepairDelta extends BaseNeoDelta {
+export class RepairPayload extends BaseNeoDelta {
     title?: string;
     status?: RepairStatus;
     owner?: number;
@@ -52,14 +56,11 @@ export class RepairDelta extends BaseNeoDelta {
     currency?: string;
 }
 
-export class RepairPayload {
-    repair: RepairDelta;
-}
-
 export declare interface RepairAPI {
     listRepairs(options?: APIOptions): Promise<Repair[]>;
     createRepair(payload: RepairPayload): Promise<Repair>;
     getRepair(objectId: number, options?: APIOptions): Promise<Repair>;
     updateRepair(objectId: number, payload: RepairPayload): Promise<Repair>;
     deleteRepair(objectId: number, options?: APIOptions): Promise<Record<string, unknown>>;
+    importRepair(objectId: number, options?: APIOptions): Promise<RepairReference>;
 }
