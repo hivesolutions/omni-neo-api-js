@@ -2,6 +2,7 @@ import { API as BaseAPI, APIOptions } from "yonius";
 
 import { User, UserAPI } from "./user";
 import { Store, StoreAPI } from "./store";
+import { Entity, EntityAPI, EntityPayload } from "./entity";
 import { Repair, RepairAPI, RepairPayload } from "./repair";
 import { Merchandise, MerchandisePayload, MerchandiseAPI } from "./merchandise";
 import { SaleSnapshot, SaleSnapshotAPI } from "./sale-snapshot";
@@ -49,6 +50,7 @@ export class BaseNeoDelta {
 export interface APIInterface
     extends UserAPI,
         StoreAPI,
+        EntityAPI,
         RepairAPI,
         MerchandiseAPI,
         SaleSnapshotAPI,
@@ -68,6 +70,16 @@ export declare class API extends BaseAPI implements APIInterface {
     selfUser(options?: APIOptions): Promise<User>;
 
     listStores(options?: APIOptions): Promise<Store[]>;
+
+    listEntities(options?: APIOptions): Promise<Entity[]>;
+    getEntity(objectId: number, options?: APIOptions): Promise<Entity>;
+    updateEntity(payload: EntityPayload): Promise<Entity>;
+    sequenceEntity(objectId: number, options?: APIOptions): Promise<Entity>;
+    mediaEntity(
+        objectId: number,
+        params?: { position?: number; dimensions?: string; label?: string },
+        options?: APIOptions
+    ): Promise<Blob>;
 
     listRepairs(options?: APIOptions): Promise<Repair[]>;
     createRepair(payload: RepairPayload): Promise<Repair>;

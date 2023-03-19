@@ -23,6 +23,16 @@ export const EntityAPI = superclass =>
             const response = await this.get(url, options);
             return response;
         }
+
+        async mediaEntity(objectId, { position, dimensions, label } = {}, options = {}) {
+            const url = `${this.baseUrl}entities/${objectId}/media`;
+            options.params = options.params !== undefined ? options.params : {};
+            options.params.position = position;
+            options.params.dimensions = dimensions;
+            options.params.label = label;
+            const response = await this.get(url, options);
+            return response;
+        }
     };
 
 export default EntityAPI;
