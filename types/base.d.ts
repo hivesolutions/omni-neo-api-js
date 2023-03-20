@@ -4,6 +4,7 @@ import { User, UserAPI } from "./user";
 import { Store, StoreAPI } from "./store";
 import { Entity, EntityAPI, EntityPayload } from "./entity";
 import { Repair, RepairAPI, RepairPayload } from "./repair";
+import { Product, ProductAPI, ProductPayload } from "./product";
 import { Merchandise, MerchandisePayload, MerchandiseAPI } from "./merchandise";
 import { SaleSnapshot, SaleSnapshotAPI } from "./sale-snapshot";
 import {
@@ -17,6 +18,7 @@ export class Base {
     object_id: number;
     created: number;
     modified: number;
+    description: string;
     meta?: Record<string, unknown>;
     [x: string]: unknown;
 }
@@ -25,6 +27,7 @@ export class BaseDelta {
     object_id?: number;
     created?: number;
     modified?: number;
+    description?: string;
     meta?: Record<string, unknown>;
     [x: string]: unknown;
 }
@@ -52,6 +55,7 @@ export interface APIInterface
         StoreAPI,
         EntityAPI,
         RepairAPI,
+        ProductAPI,
         MerchandiseAPI,
         SaleSnapshotAPI,
         RepairReferenceAPI {
@@ -87,6 +91,10 @@ export declare class API extends BaseAPI implements APIInterface {
     updateRepair(objectId: number, payload: RepairPayload): Promise<Repair>;
     deleteRepair(objectId: number, options?: APIOptions): Promise<Record<string, unknown>>;
     importRepair(objectId: number, options?: APIOptions): Promise<RepairReference>;
+
+    listProducts(options?: APIOptions): Promise<Product[]>;
+    getProduct(objectId: number, options?: APIOptions): Promise<Product>;
+    updateProduct(payload: ProductPayload): Promise<Product>;
 
     listMerchandise(options?: APIOptions): Promise<Merchandise[]>;
     updateMerchandise(payload: MerchandisePayload): Promise<Merchandise>;

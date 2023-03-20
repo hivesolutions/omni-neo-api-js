@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Import repair method support
 * Initial support for the `Merchandise` model entity
 * Initial support for the `Entity` model entity
+* Initial support for the `Product` model entity
 
 ### Changed
 
