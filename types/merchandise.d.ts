@@ -4,6 +4,7 @@ import { Base, BaseDelta } from "./base";
 export class Merchandise extends Base {
     company_product_code: string;
     barcode: string;
+    ean: string;
 }
 
 export class MerchandiseDelta extends BaseDelta {
