@@ -1,5 +1,5 @@
 import { APIOptions } from "yonius";
-import { Base, BaseDelta } from "./base";
+import { Base, BaseDelta, BaseNeo } from "./base";
 
 export class RepairReference extends Base {
     owner: number;
