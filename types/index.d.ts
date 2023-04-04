@@ -1,6 +1,7 @@
 export * from "./base";
 export * from "./repair";
 export * from "./merchandise";
+export * from "./named-node";
 export * from "./product";
 export * from "./repair-reference";
 export * from "./sale-snapshot";

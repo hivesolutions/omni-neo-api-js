@@ -1,13 +1,13 @@
 import { APIOptions } from "yonius";
-import { Base, BaseDelta } from "./base";
+import { NamedNode, NamedNodeDelta } from "./named-node";
 
-export class Merchandise extends Base {
+export class Merchandise extends NamedNode {
     company_product_code: string;
     barcode: string;
     ean: string;
 }
 
-export class MerchandiseDelta extends BaseDelta {
+export class MerchandiseDelta extends NamedNodeDelta {
     company_product_code?: string;
     barcode?: string;
 }
