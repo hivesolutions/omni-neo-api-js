@@ -7,6 +7,7 @@ import { Repair, RepairAPI, RepairPayload } from "./repair";
 import { Product, ProductAPI, ProductPayload } from "./product";
 import { Merchandise, MerchandisePayload, MerchandiseAPI } from "./merchandise";
 import { SaleSnapshot, SaleSnapshotAPI } from "./sale-snapshot";
+import { InventoryLine, InventoryLineAPI } from "./inventory-line";
 import {
     RepairReference,
     RepairReferenceAPI,
@@ -58,6 +59,7 @@ export interface APIInterface
         ProductAPI,
         MerchandiseAPI,
         SaleSnapshotAPI,
+        InventoryLineAPI,
         RepairReferenceAPI {
     ping(): Promise<object>;
 }
@@ -101,6 +103,8 @@ export declare class API extends BaseAPI implements APIInterface {
     listStoreMerchandise(storeId: number, options?: APIOptions): Promise<Merchandise[]>;
 
     statsSaleSnapshot(options?: APIOptions): Promise<SaleSnapshot[]>;
+
+    listInventoryLines(options?: APIOptions): Promise<InventoryLine[]>;
 
     listRepairReferences(options?: APIOptions): Promise<RepairReference[]>;
     createRepairReference(payload: RepairReferencePayload): Promise<RepairReference>;
