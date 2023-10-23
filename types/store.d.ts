@@ -1,7 +1,7 @@
 import { APIOptions } from "yonius";
-import { Base } from "./base";
+import { FunctionalUnit } from "./functional-unit";
 
-export class Store extends Base {}
+export class Store extends FunctionalUnit {}
 
 export declare interface StoreAPI {
     listStores(options?: APIOptions): Promise<Store[]>;
