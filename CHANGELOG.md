@@ -9,16 +9,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+*
+
+### Changed
+
+*
+
+### Fixed
+
+*
+
+## [0.1.8] - 2023-10-24
+
+### Added
+
 * Support for the `NamedNode` hierarchy level
 * Support for the `InventoryLine` entity
 
 ### Changed
 
 * Bumped packages
-
-### Fixed
-
-*
 
 ## [0.1.7] - 2023-03-20
 
