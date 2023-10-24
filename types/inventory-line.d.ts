@@ -1,6 +1,7 @@
 import { APIOptions } from "yonius";
 import { Base } from "./base";
 import { FunctionalUnit } from "./functional-unit";
+import { Merchandise } from "./merchandise";
 
 export class InventoryLine extends Base {
     stock_on_hand: number;
@@ -9,11 +10,8 @@ export class InventoryLine extends Base {
     discount: number;
     max_stock: number;
     min_stock: number;
+    merchandise: Merchandise;
     functional_unit: FunctionalUnit;
-}
-
-export class MerchandisePayload {
-    merchandise?: MerchandiseDelta;
 }
 
 export declare interface InventoryLineAPI {
