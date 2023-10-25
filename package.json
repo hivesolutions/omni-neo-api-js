@@ -1,6 +1,6 @@
 {
     "name": "omni-neo-api",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "description": "The Omni Neo API client",
     "keywords": [
         "api",
@@ -49,7 +49,7 @@
         "watch": "rollup -c -w"
     },
     "dependencies": {
-        "yonius": "^0.13.9"
+        "yonius": "^0.13.10"
     },
     "devDependencies": {
         "@babel/core": "^7.23.2",
