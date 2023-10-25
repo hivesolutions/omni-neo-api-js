@@ -1,4 +1,5 @@
 export * from "./base";
+export * from "./contactable";
 export * from "./entity";
 export * from "./functional-unit";
 export * from "./inventory-line";
