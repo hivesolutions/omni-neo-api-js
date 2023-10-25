@@ -13,11 +13,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-* Bumped yonius package
+*
 
 ### Fixed
 
 *
+
+## [0.1.9] - 2023-10-25
+
+### Changed
+
+* Bumped yonius package
 
 ## [0.1.8] - 2023-10-24
 
