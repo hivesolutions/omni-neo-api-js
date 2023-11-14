@@ -1,5 +1,6 @@
 import { API as BaseAPI, APIOptions } from "yonius";
 
+import { Sale, SaleAPI } from "./sale";
 import { User, UserAPI } from "./user";
 import { Store, StoreAPI } from "./store";
 import { Entity, EntityAPI, EntityPayload } from "./entity";
@@ -17,8 +18,8 @@ import {
 
 export class Base {
     object_id: number;
-    created: number;
-    modified: number;
+    create_date: number;
+    modify_date: number;
     description: string;
     meta?: Record<string, unknown>;
     [x: string]: unknown;
@@ -26,8 +27,8 @@ export class Base {
 
 export class BaseDelta {
     object_id?: number;
-    created?: number;
-    modified?: number;
+    create_date?: number;
+    modify_date?: number;
     description?: string;
     meta?: Record<string, unknown>;
     [x: string]: unknown;
@@ -52,7 +53,8 @@ export class BaseNeoDelta {
 }
 
 export interface APIInterface
-    extends UserAPI,
+    extends SaleAPI,
+        UserAPI,
         StoreAPI,
         EntityAPI,
         RepairAPI,
@@ -72,6 +74,9 @@ export declare class API extends BaseAPI implements APIInterface {
     login(username: string, password: string): Promise<Record<string, unknown>>;
     isAuth(): boolean;
     ping(): Promise<object>;
+
+    listSales(options?: APIOptions): Promise<Sale[]>;
+    getSale(objectId: number, options?: APIOptions): Promise<Sale>;
 
     selfUser(options?: APIOptions): Promise<User>;
 
