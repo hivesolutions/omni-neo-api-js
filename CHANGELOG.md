@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* More attributes to the `Sale` type
+*
 
 ### Changed
 
@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 *
+
+## [0.1.12] - 2023-11-15
+
+### Added
+
+* Support for the `Sale` entity
 
 ## [0.1.11] - 2023-11-14
 
