@@ -9,7 +9,7 @@ const returns = async () => {
     const _return = await api.getReturn(returns[0].object_id);
     const returnLine = _return.return_lines[0];
     console.info(`Return Line: ${_return.identifier} (${_return.object_id})`);
-    console.info(`${returnLine.merchandise.name} ${returnLine.quantity}x`);
+    console.info(`${returnLine.merchandise.company_product_code} ${returnLine.quantity}x`);
 };
 
 dotenv.config();
