@@ -9,8 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* Support for the `Return` entity
-* Improved examples with the usage of `dotenv`
+*
 
 ### Changed
 
@@ -19,6 +18,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 *
+
+## [0.1.13] - 2024-02-24
+
+### Added
+
+* Support for the `Return` entity
+* Improved examples with the usage of `dotenv`
 
 ## [0.1.12] - 2023-11-15
 
