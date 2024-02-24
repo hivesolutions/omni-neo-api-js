@@ -5,6 +5,7 @@ import { User, UserAPI } from "./user";
 import { Store, StoreAPI } from "./store";
 import { Entity, EntityAPI, EntityPayload } from "./entity";
 import { Repair, RepairAPI, RepairPayload } from "./repair";
+import { Return, ReturnAPI } from "./return";
 import { Product, ProductAPI, ProductPayload } from "./product";
 import { Merchandise, MerchandisePayload, MerchandiseAPI } from "./merchandise";
 import { SaleSnapshot, SaleSnapshotAPI } from "./sale-snapshot";
@@ -58,6 +59,7 @@ export interface APIInterface
         StoreAPI,
         EntityAPI,
         RepairAPI,
+        ReturnAPI,
         ProductAPI,
         MerchandiseAPI,
         SaleSnapshotAPI,
@@ -98,6 +100,9 @@ export declare class API extends BaseAPI implements APIInterface {
     updateRepair(objectId: number, payload: RepairPayload): Promise<Repair>;
     deleteRepair(objectId: number, options?: APIOptions): Promise<Record<string, unknown>>;
     importRepair(objectId: number, options?: APIOptions): Promise<RepairReference>;
+
+    listReturns(options?: APIOptions): Promise<Return[]>;
+    getReturn(objectId: number, options?: APIOptions): Promise<Return>;
 
     listProducts(options?: APIOptions): Promise<Product[]>;
     getProduct(objectId: number, options?: APIOptions): Promise<Product>;

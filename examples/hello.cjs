@@ -1,4 +1,5 @@
 const yonius = require("yonius");
+const dotenv = require("dotenv");
 const omni = require("..");
 
 const hello = async () => {
@@ -8,4 +9,5 @@ const hello = async () => {
     console.info(result);
 };
 
+dotenv.config();
 hello();

@@ -2,6 +2,7 @@ export * from "./base";
 export * from "./entity";
 export * from "./inventory-line";
 export * from "./repair";
+export * from "./return";
 export * from "./merchandise";
 export * from "./repair-reference";
 export * from "./sale-snapshot";

@@ -1,9 +1,9 @@
 import { APIOptions } from "yonius";
-import { Base } from "./base";
+import { Operation } from "./operation";
 import { SaleLine } from "./sale-line";
 import { FunctionalUnit } from "./functional-unit";
 
-export class Sale extends Base {
+export class Sale extends Operation {
     seller_stockholder: FunctionalUnit;
     sale_lines: SaleLine[];
 }
