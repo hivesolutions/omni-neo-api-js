@@ -7,10 +7,12 @@ import { RepairAPI } from "./repair";
 import { ReturnAPI } from "./return";
 import { ProductAPI } from "./product";
 import { CustomerAPI } from "./customer";
+import { SupplierAPI } from "./supplier";
 import { MerchandiseAPI } from "./merchandise";
 import { SaleSnapshotAPI } from "./sale-snapshot";
 import { InventoryLineAPI } from "./inventory-line";
 import { RepairReferenceAPI } from "./repair-reference";
+import { SupplierCompanyAPI } from "./supplier-company";
 
 const BASE_URL = "http://localhost:8080/";
 
@@ -23,10 +25,12 @@ export class API extends mix(YoniusAPI).with(
     ReturnAPI,
     ProductAPI,
     CustomerAPI,
+    SupplierAPI,
     MerchandiseAPI,
     SaleSnapshotAPI,
     InventoryLineAPI,
-    RepairReferenceAPI
+    RepairReferenceAPI,
+    SupplierCompanyAPI
 ) {
     constructor(kwargs = {}) {
         super(kwargs);

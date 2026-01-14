@@ -1,5 +1,7 @@
 export * from "./base";
 export * from "./customer";
+export * from "./supplier";
+export * from "./supplier-company";
 export * from "./entity";
 export * from "./inventory-line";
 export * from "./repair";
