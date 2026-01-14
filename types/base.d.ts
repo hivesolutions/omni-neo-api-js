@@ -1,5 +1,6 @@
 import { API as BaseAPI, APIOptions } from "yonius";
 
+import { Customer, CustomerAPI } from "./customer";
 import { Sale, SaleAPI } from "./sale";
 import { User, UserAPI } from "./user";
 import { Store, StoreAPI } from "./store";
@@ -54,7 +55,8 @@ export class BaseNeoDelta {
 }
 
 export interface APIInterface
-    extends SaleAPI,
+    extends CustomerAPI,
+        SaleAPI,
         UserAPI,
         StoreAPI,
         EntityAPI,
@@ -83,6 +85,9 @@ export declare class API extends BaseAPI implements APIInterface {
     selfUser(options?: APIOptions): Promise<User>;
 
     listStores(options?: APIOptions): Promise<Store[]>;
+
+    listCustomers(options?: APIOptions): Promise<Customer[]>;
+    getCustomer(objectId: number, options?: APIOptions): Promise<Customer>;
 
     listEntities(options?: APIOptions): Promise<Entity[]>;
     getEntity(objectId: number, options?: APIOptions): Promise<Entity>;
