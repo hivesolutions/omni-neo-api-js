@@ -107,11 +107,11 @@ const _messagePayloadOptions = async payload => {
     }
     const dataM = { body: payload.body || "" };
     dataM.files = await Promise.all(
-        files.map(async file => ({
-            name: file.name || "file",
-            data: new Uint8Array(await file.arrayBuffer()),
-            mime: file.type || "application/octet-stream"
-        }))
+        files.map(async file => [
+            file.name || "file",
+            file.type || "application/octet-stream",
+            new Uint8Array(await file.arrayBuffer())
+        ])
     );
     return { dataM: dataM };
 };
