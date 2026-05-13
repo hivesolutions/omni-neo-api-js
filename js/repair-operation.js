@@ -65,6 +65,30 @@ export const RepairOperationAPI = superclass =>
             const response = await this.post(url, options);
             return response;
         }
+
+        async listMessagesRepairOperation(objectId, options = {}) {
+            const url = `${this.baseUrl}repair_operations/${objectId}/messages`;
+            const response = await this.get(url, options);
+            return response;
+        }
+
+        async createMessageRepairOperation(objectId, payload) {
+            const url = `${this.baseUrl}repair_operations/${objectId}/messages`;
+            const response = await this.post(url, { dataJ: payload });
+            return response;
+        }
+
+        async updateMessageRepairOperation(objectId, messageId, payload) {
+            const url = `${this.baseUrl}repair_operations/${objectId}/messages/${messageId}/update`;
+            const response = await this.post(url, { dataJ: payload });
+            return response;
+        }
+
+        async deleteMessageRepairOperation(objectId, messageId, options = {}) {
+            const url = `${this.baseUrl}repair_operations/${objectId}/messages/${messageId}`;
+            const response = await this.delete(url, options);
+            return response;
+        }
     };
 
 export default RepairOperationAPI;

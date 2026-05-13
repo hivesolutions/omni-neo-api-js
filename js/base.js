@@ -12,7 +12,6 @@ import { SupplierAPI } from "./supplier";
 import { MerchandiseAPI } from "./merchandise";
 import { SaleSnapshotAPI } from "./sale-snapshot";
 import { InventoryLineAPI } from "./inventory-line";
-import { MessageWorkflowAPI } from "./message-workflow";
 import { RepairOperationAPI } from "./repair-operation";
 import { RepairReferenceAPI } from "./repair-reference";
 import { SupplierCompanyAPI } from "./supplier-company";
@@ -33,7 +32,6 @@ export class API extends mix(YoniusAPI).with(
     MerchandiseAPI,
     SaleSnapshotAPI,
     InventoryLineAPI,
-    MessageWorkflowAPI,
     RepairOperationAPI,
     RepairReferenceAPI,
     SupplierCompanyAPI

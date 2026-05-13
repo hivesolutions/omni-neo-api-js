@@ -1,4 +1,3 @@
-import { APIOptions } from "yonius";
 import { Base, BaseDelta } from "./base";
 
 export class WorkflowMessage extends Base {
@@ -45,21 +44,3 @@ export class WorkflowStateChangeEvent {
 }
 
 export type WorkflowEvent = WorkflowMessageEvent | WorkflowStateChangeEvent;
-
-export declare interface MessageWorkflowAPI {
-    listMessageWorkflow(operationId: number, options?: APIOptions): Promise<WorkflowEvent[]>;
-    createMessageWorkflow(
-        operationId: number,
-        payload: WorkflowMessagePayload
-    ): Promise<WorkflowMessage>;
-    updateMessageWorkflow(
-        operationId: number,
-        messageId: number,
-        payload: WorkflowMessagePayload
-    ): Promise<WorkflowMessage>;
-    deleteMessageWorkflow(
-        operationId: number,
-        messageId: number,
-        options?: APIOptions
-    ): Promise<Record<string, unknown>>;
-}

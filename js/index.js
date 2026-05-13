@@ -7,7 +7,6 @@ export * from "./entity";
 export * from "./inventory-line";
 export * from "./repair";
 export * from "./repair-operation";
-export * from "./message-workflow";
 export * from "./return";
 export * from "./merchandise";
 export * from "./repair-reference";

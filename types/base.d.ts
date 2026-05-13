@@ -15,11 +15,10 @@ import { Merchandise, MerchandisePayload, MerchandiseAPI } from "./merchandise";
 import { SaleSnapshot, SaleSnapshotAPI } from "./sale-snapshot";
 import { InventoryLine, InventoryLineAPI } from "./inventory-line";
 import {
-    MessageWorkflowAPI,
     WorkflowEvent,
     WorkflowMessage,
     WorkflowMessagePayload
-} from "./message-workflow";
+} from "./workflow-message";
 import { RepairOperation, RepairOperationAPI, RepairOperationPayload } from "./repair-operation";
 import {
     RepairReference,
@@ -80,7 +79,6 @@ export interface APIInterface
         MerchandiseAPI,
         SaleSnapshotAPI,
         InventoryLineAPI,
-        MessageWorkflowAPI,
         RepairOperationAPI,
         RepairReferenceAPI {
     ping(): Promise<object>;
@@ -167,21 +165,18 @@ export declare class API extends BaseAPI implements APIInterface {
     sendRepairOperation(objectId: number, options?: APIOptions): Promise<RepairOperation>;
     closeRepairOperation(objectId: number, options?: APIOptions): Promise<RepairOperation>;
     issueRepairSlipRepairOperation(objectId: number, options?: APIOptions): Promise<RepairSlip>;
-
-    listMessageWorkflow(operationId: number, options?: APIOptions): Promise<WorkflowEvent[]>;
-    createMessageWorkflow(
-        operationId: number,
+    listMessagesRepairOperation(objectId: number, options?: APIOptions): Promise<WorkflowEvent[]>;
+    createMessageRepairOperation(
+        objectId: number,
         payload: WorkflowMessagePayload
     ): Promise<WorkflowMessage>;
-
-    updateMessageWorkflow(
-        operationId: number,
+    updateMessageRepairOperation(
+        objectId: number,
         messageId: number,
         payload: WorkflowMessagePayload
     ): Promise<WorkflowMessage>;
-
-    deleteMessageWorkflow(
-        operationId: number,
+    deleteMessageRepairOperation(
+        objectId: number,
         messageId: number,
         options?: APIOptions
     ): Promise<Record<string, unknown>>;

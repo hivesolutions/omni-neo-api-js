@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Support for the `SupplierCompany` entity
 * Support for the `Employee` entity
 * Support for the `RepairOperation` entity
-* Support for the `MessageWorkflow` entity
+* Support for the `RepairOperation` messages workflow
 * Support for `getStore` single store fetch
 * Capture of `user_id` from authentication response
 

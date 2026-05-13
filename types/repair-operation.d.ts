@@ -1,6 +1,7 @@
 import { APIOptions } from "yonius";
 import { Base, BaseDelta } from "./base";
 import { RepairSlip } from "./repair-reference";
+import { WorkflowEvent, WorkflowMessage, WorkflowMessagePayload } from "./workflow-message";
 
 export enum RepairOperationType {
     warranty = 1,
@@ -84,4 +85,19 @@ export declare interface RepairOperationAPI {
     sendRepairOperation(objectId: number, options?: APIOptions): Promise<RepairOperation>;
     closeRepairOperation(objectId: number, options?: APIOptions): Promise<RepairOperation>;
     issueRepairSlipRepairOperation(objectId: number, options?: APIOptions): Promise<RepairSlip>;
+    listMessagesRepairOperation(objectId: number, options?: APIOptions): Promise<WorkflowEvent[]>;
+    createMessageRepairOperation(
+        objectId: number,
+        payload: WorkflowMessagePayload
+    ): Promise<WorkflowMessage>;
+    updateMessageRepairOperation(
+        objectId: number,
+        messageId: number,
+        payload: WorkflowMessagePayload
+    ): Promise<WorkflowMessage>;
+    deleteMessageRepairOperation(
+        objectId: number,
+        messageId: number,
+        options?: APIOptions
+    ): Promise<Record<string, unknown>>;
 }
