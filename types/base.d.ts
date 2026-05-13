@@ -6,6 +6,7 @@ import { SupplierCompany, SupplierCompanyAPI } from "./supplier-company";
 import { Sale, SaleAPI } from "./sale";
 import { User, UserAPI } from "./user";
 import { Store, StoreAPI } from "./store";
+import { Employee, EmployeeAPI, EmployeePayload } from "./employee";
 import { Entity, EntityAPI, EntityPayload } from "./entity";
 import { Repair, RepairAPI, RepairPayload } from "./repair";
 import { Return, ReturnAPI } from "./return";
@@ -13,6 +14,13 @@ import { Product, ProductAPI, ProductPayload } from "./product";
 import { Merchandise, MerchandisePayload, MerchandiseAPI } from "./merchandise";
 import { SaleSnapshot, SaleSnapshotAPI } from "./sale-snapshot";
 import { InventoryLine, InventoryLineAPI } from "./inventory-line";
+import {
+    MessageWorkflowAPI,
+    WorkflowEvent,
+    WorkflowMessage,
+    WorkflowMessagePayload
+} from "./message-workflow";
+import { RepairOperation, RepairOperationAPI, RepairOperationPayload } from "./repair-operation";
 import {
     RepairReference,
     RepairReferenceAPI,
@@ -68,9 +76,12 @@ export interface APIInterface
         RepairAPI,
         ReturnAPI,
         ProductAPI,
+        EmployeeAPI,
         MerchandiseAPI,
         SaleSnapshotAPI,
         InventoryLineAPI,
+        MessageWorkflowAPI,
+        RepairOperationAPI,
         RepairReferenceAPI {
     ping(): Promise<object>;
 }
@@ -78,6 +89,7 @@ export interface APIInterface
 export declare class API extends BaseAPI implements APIInterface {
     username?: string | null;
     sessionId?: string | null;
+    userId?: number | null;
     tokens?: string[] | null;
 
     login(username: string, password: string): Promise<Record<string, unknown>>;
@@ -90,6 +102,7 @@ export declare class API extends BaseAPI implements APIInterface {
     selfUser(options?: APIOptions): Promise<User>;
 
     listStores(options?: APIOptions): Promise<Store[]>;
+    getStore(objectId: number, options?: APIOptions): Promise<Store>;
 
     listCustomers(options?: APIOptions): Promise<Customer[]>;
     getCustomer(objectId: number, options?: APIOptions): Promise<Customer>;
@@ -124,6 +137,13 @@ export declare class API extends BaseAPI implements APIInterface {
     getProduct(objectId: number, options?: APIOptions): Promise<Product>;
     updateProduct(payload: ProductPayload): Promise<Product>;
 
+    listEmployees(options?: APIOptions): Promise<Employee[]>;
+    createEmployee(payload: EmployeePayload): Promise<Employee>;
+    selfEmployee(options?: APIOptions): Promise<Employee>;
+    getEmployee(objectId: number, options?: APIOptions): Promise<Employee>;
+    updateEmployee(objectId: number, payload: EmployeePayload): Promise<Employee>;
+    deleteEmployee(objectId: number, options?: APIOptions): Promise<Record<string, unknown>>;
+
     listMerchandise(options?: APIOptions): Promise<Merchandise[]>;
     updateMerchandise(payload: MerchandisePayload): Promise<Merchandise>;
     listStoreMerchandise(storeId: number, options?: APIOptions): Promise<Merchandise[]>;
@@ -131,6 +151,40 @@ export declare class API extends BaseAPI implements APIInterface {
     statsSaleSnapshot(options?: APIOptions): Promise<SaleSnapshot[]>;
 
     listInventoryLines(options?: APIOptions): Promise<InventoryLine[]>;
+
+    listRepairOperations(options?: APIOptions): Promise<RepairOperation[]>;
+    createRepairOperation(payload: RepairOperationPayload): Promise<RepairOperation>;
+    getRepairOperation(objectId: number, options?: APIOptions): Promise<RepairOperation>;
+    updateRepairOperation(
+        objectId: number,
+        payload: RepairOperationPayload
+    ): Promise<RepairOperation>;
+
+    approveRepairOperation(objectId: number, options?: APIOptions): Promise<RepairOperation>;
+    rejectRepairOperation(objectId: number, options?: APIOptions): Promise<RepairOperation>;
+    quoteRepairOperation(objectId: number, options?: APIOptions): Promise<RepairOperation>;
+    receiveRepairOperation(objectId: number, options?: APIOptions): Promise<RepairOperation>;
+    sendRepairOperation(objectId: number, options?: APIOptions): Promise<RepairOperation>;
+    closeRepairOperation(objectId: number, options?: APIOptions): Promise<RepairOperation>;
+    issueRepairSlipRepairOperation(objectId: number, options?: APIOptions): Promise<RepairSlip>;
+
+    listMessageWorkflow(operationId: number, options?: APIOptions): Promise<WorkflowEvent[]>;
+    createMessageWorkflow(
+        operationId: number,
+        payload: WorkflowMessagePayload
+    ): Promise<WorkflowMessage>;
+
+    updateMessageWorkflow(
+        operationId: number,
+        messageId: number,
+        payload: WorkflowMessagePayload
+    ): Promise<WorkflowMessage>;
+
+    deleteMessageWorkflow(
+        operationId: number,
+        messageId: number,
+        options?: APIOptions
+    ): Promise<Record<string, unknown>>;
 
     listRepairReferences(options?: APIOptions): Promise<RepairReference[]>;
     createRepairReference(payload: RepairReferencePayload): Promise<RepairReference>;

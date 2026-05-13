@@ -5,6 +5,12 @@ export const StoreAPI = superclass =>
             const response = await this.get(url, options);
             return response;
         }
+
+        async getStore(objectId, options = {}) {
+            const url = `${this.baseUrl}stores/${objectId}`;
+            const response = await this.get(url, options);
+            return response;
+        }
     };
 
 export default StoreAPI;

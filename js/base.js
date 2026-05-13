@@ -7,10 +7,13 @@ import { RepairAPI } from "./repair";
 import { ReturnAPI } from "./return";
 import { ProductAPI } from "./product";
 import { CustomerAPI } from "./customer";
+import { EmployeeAPI } from "./employee";
 import { SupplierAPI } from "./supplier";
 import { MerchandiseAPI } from "./merchandise";
 import { SaleSnapshotAPI } from "./sale-snapshot";
 import { InventoryLineAPI } from "./inventory-line";
+import { MessageWorkflowAPI } from "./message-workflow";
+import { RepairOperationAPI } from "./repair-operation";
 import { RepairReferenceAPI } from "./repair-reference";
 import { SupplierCompanyAPI } from "./supplier-company";
 
@@ -25,10 +28,13 @@ export class API extends mix(YoniusAPI).with(
     ReturnAPI,
     ProductAPI,
     CustomerAPI,
+    EmployeeAPI,
     SupplierAPI,
     MerchandiseAPI,
     SaleSnapshotAPI,
     InventoryLineAPI,
+    MessageWorkflowAPI,
+    RepairOperationAPI,
     RepairReferenceAPI,
     SupplierCompanyAPI
 ) {
@@ -88,6 +94,7 @@ export class API extends mix(YoniusAPI).with(
         });
         this.username = contents.username || null;
         this.sessionId = contents.session_id || null;
+        this.userId = contents.user_id || null;
         this.tokens = contents.tokens || null;
         this.trigger("auth", contents);
         return this.sessionId;
