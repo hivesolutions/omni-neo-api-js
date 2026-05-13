@@ -14,11 +14,7 @@ import { Product, ProductAPI, ProductPayload } from "./product";
 import { Merchandise, MerchandisePayload, MerchandiseAPI } from "./merchandise";
 import { SaleSnapshot, SaleSnapshotAPI } from "./sale-snapshot";
 import { InventoryLine, InventoryLineAPI } from "./inventory-line";
-import {
-    WorkflowEvent,
-    WorkflowMessage,
-    WorkflowMessagePayload
-} from "./workflow-message";
+import { WorkflowEvent, WorkflowMessage, WorkflowMessagePayload } from "./workflow-message";
 import { RepairOperation, RepairOperationAPI, RepairOperationPayload } from "./repair-operation";
 import {
     RepairReference,
@@ -170,14 +166,23 @@ export declare class API extends BaseAPI implements APIInterface {
         objectId: number,
         payload: WorkflowMessagePayload
     ): Promise<WorkflowMessage>;
+
     updateMessageRepairOperation(
         objectId: number,
         messageId: number,
         payload: WorkflowMessagePayload
     ): Promise<WorkflowMessage>;
+
     deleteMessageRepairOperation(
         objectId: number,
         messageId: number,
+        options?: APIOptions
+    ): Promise<Record<string, unknown>>;
+
+    deleteFileMessageRepairOperation(
+        objectId: number,
+        messageId: number,
+        fileId: number,
         options?: APIOptions
     ): Promise<Record<string, unknown>>;
 

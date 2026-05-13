@@ -100,4 +100,10 @@ export declare interface RepairOperationAPI {
         messageId: number,
         options?: APIOptions
     ): Promise<Record<string, unknown>>;
+    deleteFileMessageRepairOperation(
+        objectId: number,
+        messageId: number,
+        fileId: number,
+        options?: APIOptions
+    ): Promise<Record<string, unknown>>;
 }

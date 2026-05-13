@@ -74,13 +74,15 @@ export const RepairOperationAPI = superclass =>
 
         async createMessageRepairOperation(objectId, payload) {
             const url = `${this.baseUrl}repair_operations/${objectId}/messages`;
-            const response = await this.post(url, { dataJ: payload });
+            const options = await _messagePayloadOptions(payload);
+            const response = await this.post(url, options);
             return response;
         }
 
         async updateMessageRepairOperation(objectId, messageId, payload) {
             const url = `${this.baseUrl}repair_operations/${objectId}/messages/${messageId}/update`;
-            const response = await this.post(url, { dataJ: payload });
+            const options = await _messagePayloadOptions(payload);
+            const response = await this.post(url, options);
             return response;
         }
 
@@ -89,6 +91,29 @@ export const RepairOperationAPI = superclass =>
             const response = await this.delete(url, options);
             return response;
         }
+
+        async deleteFileMessageRepairOperation(objectId, messageId, fileId, options = {}) {
+            const url = `${this.baseUrl}repair_operations/${objectId}/messages/${messageId}/files/${fileId}`;
+            const response = await this.delete(url, options);
+            return response;
+        }
     };
+
+const _messagePayloadOptions = async payload => {
+    const files = payload && payload.files;
+    if (!files || files.length === 0) {
+        const { files: _ignored, ...rest } = payload || {};
+        return { dataJ: rest };
+    }
+    const dataM = { body: payload.body || "" };
+    dataM.files = await Promise.all(
+        files.map(async file => ({
+            name: file.name || "file",
+            data: new Uint8Array(await file.arrayBuffer()),
+            mime: file.type || "application/octet-stream"
+        }))
+    );
+    return { dataM: dataM };
+};
 
 export default RepairOperationAPI;

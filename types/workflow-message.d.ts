@@ -1,9 +1,17 @@
 import { Base, BaseDelta } from "./base";
 
+export class WorkflowMessageFile {
+    object_id: number;
+    label: string;
+    mime_type?: string;
+    secret: string;
+}
+
 export class WorkflowMessage extends Base {
     date: number;
     body: string;
     body_html?: string;
+    files?: WorkflowMessageFile[];
     edited_date?: number;
     workflow_operation: number;
     _user: number;
@@ -15,6 +23,7 @@ export class WorkflowMessageDelta extends BaseDelta {
 
 export class WorkflowMessagePayload {
     body?: string;
+    files?: File[];
 }
 
 export class WorkflowMessageEvent {
@@ -25,6 +34,7 @@ export class WorkflowMessageEvent {
     edited_date?: number;
     body: string;
     body_html?: string;
+    files?: WorkflowMessageFile[];
     user?: string;
     user_object_id?: number;
     user_mtime?: number;
