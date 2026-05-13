@@ -3,6 +3,7 @@ import { Base, BaseDelta } from "./base";
 export class WorkflowMessage extends Base {
     date: number;
     body: string;
+    body_html?: string;
     edited_date?: number;
     workflow_operation: number;
     _user: number;
@@ -23,6 +24,7 @@ export class WorkflowMessageEvent {
     actual_date: number;
     edited_date?: number;
     body: string;
+    body_html?: string;
     user?: string;
     user_object_id?: number;
     user_mtime?: number;
