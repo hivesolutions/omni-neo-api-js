@@ -42,6 +42,7 @@ export class RepairOperation extends Base {
     employee?: number;
     customer: number;
     supplier?: number;
+    merchandise?: number;
     repair_slip?: number;
     sale_transaction?: number;
     price?: number;
@@ -63,6 +64,7 @@ export class RepairOperationDelta extends BaseDelta {
     employee?: number;
     customer?: number;
     supplier?: number;
+    merchandise?: number;
     sale_transaction?: number;
 }
 

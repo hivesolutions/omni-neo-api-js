@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Support for file attachments in `RepairOperation` messages
 * Support for `getStore` single store fetch
 * Capture of `user_id` from authentication response
+* Optional `merchandise` relation on `RepairOperation` linking the repair to a catalogue product
 
 ### Changed
 
