@@ -30,15 +30,11 @@ import {
 import {
     SupplierBill,
     SupplierBillAPI,
-    SupplierBillInstalment,
-    SupplierBillInstalmentPayload,
     SupplierBillPayload,
     SupplierBillPayment,
     SupplierBillPaymentPayload,
     SupplierBillReasonPayload,
-    SupplierBillReport,
-    SupplierBillSchedule,
-    SupplierBillSchedulePayload
+    SupplierBillReport
 } from "./supplier-bill";
 
 export class Base {
@@ -136,33 +132,6 @@ export declare class API extends BaseAPI implements APIInterface {
         paymentId: number,
         payload: SupplierBillReasonPayload
     ): Promise<SupplierBillPayment>;
-
-    createInstalmentSupplierBill(
-        objectId: number,
-        payload: SupplierBillInstalmentPayload
-    ): Promise<SupplierBillInstalment>;
-
-    updateInstalmentSupplierBill(
-        objectId: number,
-        instalmentId: number,
-        payload: SupplierBillInstalmentPayload
-    ): Promise<SupplierBillInstalment>;
-
-    listSchedulesSupplierBill(
-        objectId: number,
-        options?: APIOptions
-    ): Promise<SupplierBillSchedule[]>;
-
-    createScheduleSupplierBill(
-        objectId: number,
-        payload: SupplierBillSchedulePayload
-    ): Promise<SupplierBillSchedule>;
-
-    updateScheduleSupplierBill(
-        objectId: number,
-        scheduleId: number,
-        payload: SupplierBillSchedulePayload
-    ): Promise<SupplierBillSchedule>;
 
     listMessagesSupplierBill(objectId: number, options?: APIOptions): Promise<WorkflowEvent[]>;
     createMessageSupplierBill(

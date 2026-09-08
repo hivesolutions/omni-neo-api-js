@@ -78,36 +78,6 @@ export const SupplierBillAPI = superclass =>
             return response;
         }
 
-        async createInstalmentSupplierBill(objectId, payload) {
-            const url = `${this.baseUrl}supplier_bills/${objectId}/instalments`;
-            const response = await this.post(url, { dataJ: payload });
-            return response;
-        }
-
-        async updateInstalmentSupplierBill(objectId, instalmentId, payload) {
-            const url = `${this.baseUrl}supplier_bills/${objectId}/instalments/${instalmentId}/update`;
-            const response = await this.post(url, { dataJ: payload });
-            return response;
-        }
-
-        async listSchedulesSupplierBill(objectId, options = {}) {
-            const url = `${this.baseUrl}supplier_bills/${objectId}/schedules`;
-            const response = await this.get(url, options);
-            return response;
-        }
-
-        async createScheduleSupplierBill(objectId, payload) {
-            const url = `${this.baseUrl}supplier_bills/${objectId}/schedules`;
-            const response = await this.post(url, { dataJ: payload });
-            return response;
-        }
-
-        async updateScheduleSupplierBill(objectId, scheduleId, payload) {
-            const url = `${this.baseUrl}supplier_bills/${objectId}/schedules/${scheduleId}/update`;
-            const response = await this.post(url, { dataJ: payload });
-            return response;
-        }
-
         async listMessagesSupplierBill(objectId, options = {}) {
             const url = `${this.baseUrl}supplier_bills/${objectId}/messages`;
             const response = await this.get(url, options);

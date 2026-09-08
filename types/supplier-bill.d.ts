@@ -7,23 +7,6 @@ import { Supplier } from "./supplier";
 import { ApprovalRequest } from "./approval-request";
 import { WorkflowEvent, WorkflowMessage, WorkflowMessagePayload } from "./workflow-message";
 
-export class SupplierBillInstalment extends Base {
-    due_date: number;
-    amount: number;
-    enabled: 0 | 1;
-    outstanding_amount?: number;
-}
-
-export class SupplierBillInstalmentDelta extends BaseDelta {
-    due_date?: number;
-    amount?: number;
-    enabled?: 0 | 1;
-}
-
-export class SupplierBillInstalmentPayload {
-    supplier_bill_instalment: SupplierBillInstalmentDelta;
-}
-
 export class SupplierBillPayment extends Base {
     extended_identifier: string;
     entry_type: 1 | 2 | 3 | 4 | 5;
@@ -42,7 +25,6 @@ export class SupplierBillPayment extends Base {
     supplier_bill: Base;
     source_bill: Base | null;
     supplier_return: Base | null;
-    instalment: SupplierBillInstalment | null;
     payment: Base | null;
     create_user: User | null;
     modify_user: User | null;
@@ -58,7 +40,6 @@ export class SupplierBillPaymentDelta extends BaseDelta {
     payment_method?: "BankTransferPayment" | "CashPayment" | "CheckPayment" | "CustomPayment";
     source_bill?: { object_id: number };
     supplier_return?: { object_id: number };
-    instalment?: { object_id: number };
 }
 
 export class SupplierBillPaymentPayload {
@@ -80,7 +61,6 @@ export class SupplierBill extends Base {
     outstanding_amount: number;
     credit_amount: number;
     balance_confirmed: 0 | 1;
-    notified_date: number | null;
     observations: string | null;
     workflow_state: 1 | 2 | 3;
     purchase: Purchase;
@@ -90,7 +70,6 @@ export class SupplierBill extends Base {
     aging_bucket: "current" | "1-30" | "31-60" | "61-90" | "90+";
     overdue: boolean;
     bill_payments?: SupplierBillPayment[];
-    instalments?: SupplierBillInstalment[];
 }
 
 export class SupplierBillDelta extends BaseDelta {
@@ -104,28 +83,6 @@ export class SupplierBillDelta extends BaseDelta {
 
 export class SupplierBillPayload {
     supplier_bill: SupplierBillDelta;
-}
-
-export class SupplierBillSchedule extends Base {
-    name: string;
-    amount: number;
-    interval_days: number;
-    next_due_date: number;
-    enabled: 0 | 1;
-    recursion_string: string;
-    last_execution_date: number | null;
-}
-
-export class SupplierBillScheduleDelta extends BaseDelta {
-    name?: string;
-    amount?: number;
-    interval_days?: number;
-    next_due_date?: number;
-    enabled?: 0 | 1;
-}
-
-export class SupplierBillSchedulePayload {
-    supplier_bill_schedule: SupplierBillScheduleDelta;
 }
 
 export class SupplierBillReasonPayload {
@@ -170,28 +127,6 @@ export declare interface SupplierBillAPI {
         paymentId: number,
         payload: SupplierBillReasonPayload
     ): Promise<SupplierBillPayment>;
-    createInstalmentSupplierBill(
-        objectId: number,
-        payload: SupplierBillInstalmentPayload
-    ): Promise<SupplierBillInstalment>;
-    updateInstalmentSupplierBill(
-        objectId: number,
-        instalmentId: number,
-        payload: SupplierBillInstalmentPayload
-    ): Promise<SupplierBillInstalment>;
-    listSchedulesSupplierBill(
-        objectId: number,
-        options?: APIOptions
-    ): Promise<SupplierBillSchedule[]>;
-    createScheduleSupplierBill(
-        objectId: number,
-        payload: SupplierBillSchedulePayload
-    ): Promise<SupplierBillSchedule>;
-    updateScheduleSupplierBill(
-        objectId: number,
-        scheduleId: number,
-        payload: SupplierBillSchedulePayload
-    ): Promise<SupplierBillSchedule>;
     listMessagesSupplierBill(objectId: number, options?: APIOptions): Promise<WorkflowEvent[]>;
     createMessageSupplierBill(
         objectId: number,

@@ -15,7 +15,7 @@ Omni Neo API for Javascript is currently licensed under the [Apache License, Ver
 ## Accounts Payable
 
 The client supports purchase lookup, supplier bills, manual settlement, approvals,
-instalments, recurring schedules, attachments, reports and CSV exports. Bill creation
+attachments, reports and CSV exports. Bill creation
 references an existing purchase and preserves its stock and document records.
 
 ```javascript
