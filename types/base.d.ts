@@ -23,11 +23,6 @@ import {
 } from "./repair-reference";
 import { Purchase, PurchaseAPI, PurchasePayload } from "./purchase";
 import {
-    ApprovalRequest,
-    ApprovalRequestAPI,
-    ApprovalRequestReasonPayload
-} from "./approval-request";
-import {
     SupplierBill,
     SupplierBillAPI,
     SupplierBillPayload,
@@ -80,7 +75,6 @@ export interface APIInterface
         SupplierCompanyAPI,
         SaleAPI,
         PurchaseAPI,
-        ApprovalRequestAPI,
         SupplierBillAPI,
         UserAPI,
         StoreAPI,
@@ -112,8 +106,6 @@ export declare class API extends BaseAPI implements APIInterface {
     createSupplierBill(payload: SupplierBillPayload): Promise<SupplierBill>;
     getSupplierBill(objectId: number, options?: APIOptions): Promise<SupplierBill>;
     updateSupplierBill(objectId: number, payload: SupplierBillPayload): Promise<SupplierBill>;
-    approveSupplierBill(objectId: number, options?: APIOptions): Promise<SupplierBill>;
-    requestSupplierBill(objectId: number, options?: APIOptions): Promise<ApprovalRequest>;
     cancelSupplierBill(objectId: number, payload: SupplierBillReasonPayload): Promise<SupplierBill>;
     reportSupplierBills(options?: APIOptions): Promise<SupplierBillReport>;
     exportSupplierBills(options?: APIOptions): Promise<string | ArrayBuffer>;
@@ -121,11 +113,6 @@ export declare class API extends BaseAPI implements APIInterface {
         objectId: number,
         payload: SupplierBillPaymentPayload
     ): Promise<SupplierBillPayment>;
-
-    requestPaymentSupplierBill(
-        objectId: number,
-        payload: SupplierBillPaymentPayload
-    ): Promise<ApprovalRequest>;
 
     reversePaymentSupplierBill(
         objectId: number,
@@ -157,16 +144,6 @@ export declare class API extends BaseAPI implements APIInterface {
         fileId: number,
         options?: APIOptions
     ): Promise<{ result: string }>;
-
-    listApprovalRequests(options?: APIOptions): Promise<ApprovalRequest[]>;
-    getApprovalRequest(objectId: number, options?: APIOptions): Promise<ApprovalRequest>;
-    approveApprovalRequest(objectId: number, options?: APIOptions): Promise<ApprovalRequest>;
-    rejectApprovalRequest(
-        objectId: number,
-        payload: ApprovalRequestReasonPayload
-    ): Promise<ApprovalRequest>;
-
-    withdrawApprovalRequest(objectId: number, options?: APIOptions): Promise<ApprovalRequest>;
 
     listPurchases(options?: APIOptions): Promise<Purchase[]>;
     createPurchase(payload: PurchasePayload): Promise<Purchase>;

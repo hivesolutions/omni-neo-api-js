@@ -30,18 +30,6 @@ export const SupplierBillAPI = superclass =>
             return response;
         }
 
-        async approveSupplierBill(objectId, options = {}) {
-            const url = `${this.baseUrl}supplier_bills/${objectId}/approve`;
-            const response = await this.put(url, options);
-            return response;
-        }
-
-        async requestSupplierBill(objectId, options = {}) {
-            const url = `${this.baseUrl}supplier_bills/${objectId}/request`;
-            const response = await this.post(url, options);
-            return response;
-        }
-
         async cancelSupplierBill(objectId, payload) {
             const url = `${this.baseUrl}supplier_bills/${objectId}/cancel`;
             const response = await this.put(url, { dataJ: payload });
@@ -62,12 +50,6 @@ export const SupplierBillAPI = superclass =>
 
         async createPaymentSupplierBill(objectId, payload) {
             const url = `${this.baseUrl}supplier_bills/${objectId}/payments`;
-            const response = await this.post(url, { dataJ: payload });
-            return response;
-        }
-
-        async requestPaymentSupplierBill(objectId, payload) {
-            const url = `${this.baseUrl}supplier_bills/${objectId}/payments/request`;
             const response = await this.post(url, { dataJ: payload });
             return response;
         }

@@ -48,7 +48,7 @@
         "upgrade": "npx sort-package-json && ncu -u",
         "watch": "rollup -c -w",
         "pretest": "npm run build",
-        "coverage": "npm run build && c8 --all --exclude-after-remap --include=\"js/supplier-bill.js\" --include=\"js/approval-request.js\" --include=\"js/purchase.js\" --reporter=text --reporter=cobertura --check-coverage --lines=90 --functions=90 mocha --recursive"
+        "coverage": "npm run build && c8 --all --exclude-after-remap --include=\"js/supplier-bill.js\" --include=\"js/purchase.js\" --reporter=text --reporter=cobertura --check-coverage --lines=90 --functions=90 mocha --recursive"
     },
     "dependencies": {
         "yonius": "^0.13.11"

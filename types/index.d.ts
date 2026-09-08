@@ -1,5 +1,4 @@
 export * from "./base";
-export * from "./approval-request";
 export * from "./contactable";
 export * from "./customer";
 export * from "./supplier";

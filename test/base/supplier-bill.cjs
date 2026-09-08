@@ -37,14 +37,20 @@ describe("SupplierBill", function() {
             const result = await api.getPermissionsSupplierBill();
             assert.strictEqual(result, response);
             assert.deepStrictEqual(requests, [
-                { method: "get", url: "http://localhost:3000/supplier_bills/permissions", options: {} }
+                {
+                    method: "get",
+                    url: "http://localhost:3000/supplier_bills/permissions",
+                    options: {}
+                }
             ]);
         });
     });
 
     describe("#createSupplierBill()", function() {
         it("should preserve the request and response contract", async () => {
-            const payload = { supplier_bill: { purchase: { object_id: 10 }, reference: "statement-1" } };
+            const payload = {
+                supplier_bill: { purchase: { object_id: 10 }, reference: "statement-1" }
+            };
             const result = await api.createSupplierBill(payload);
             assert.strictEqual(result, response);
             assert.deepStrictEqual(requests, [
@@ -80,40 +86,6 @@ describe("SupplierBill", function() {
                     method: "post",
                     url: "http://localhost:3000/supplier_bills/1/update",
                     options: { dataJ: payload }
-                }
-            ]);
-        });
-    });
-
-    describe("#approveSupplierBill()", function() {
-        it("should preserve the request and response contract", async () => {
-            const options = {
-                params: { "filters[]": ["supplier:equals:7"], start_record: 10, number_records: 5 }
-            };
-            const result = await api.approveSupplierBill(1, options);
-            assert.strictEqual(result, response);
-            assert.deepStrictEqual(requests, [
-                {
-                    method: "put",
-                    url: "http://localhost:3000/supplier_bills/1/approve",
-                    options: options
-                }
-            ]);
-        });
-    });
-
-    describe("#requestSupplierBill()", function() {
-        it("should preserve the request and response contract", async () => {
-            const options = {
-                params: { "filters[]": ["supplier:equals:7"], start_record: 10, number_records: 5 }
-            };
-            const result = await api.requestSupplierBill(1, options);
-            assert.strictEqual(result, response);
-            assert.deepStrictEqual(requests, [
-                {
-                    method: "post",
-                    url: "http://localhost:3000/supplier_bills/1/request",
-                    options: options
                 }
             ]);
         });
@@ -170,28 +142,21 @@ describe("SupplierBill", function() {
 
     describe("#createPaymentSupplierBill()", function() {
         it("should preserve the request and response contract", async () => {
-            const payload = { supplier_bill_payment: { entry_type: 1, applied_amount: 30, currency: "EUR", description: "Statement 1", request_key: "statement-1" } };
+            const payload = {
+                supplier_bill_payment: {
+                    entry_type: 1,
+                    applied_amount: 30,
+                    currency: "EUR",
+                    description: "Statement 1",
+                    request_key: "statement-1"
+                }
+            };
             const result = await api.createPaymentSupplierBill(1, payload);
             assert.strictEqual(result, response);
             assert.deepStrictEqual(requests, [
                 {
                     method: "post",
                     url: "http://localhost:3000/supplier_bills/1/payments",
-                    options: { dataJ: payload }
-                }
-            ]);
-        });
-    });
-
-    describe("#requestPaymentSupplierBill()", function() {
-        it("should preserve the request and response contract", async () => {
-            const payload = { supplier_bill_payment: { entry_type: 1, applied_amount: 30, currency: "EUR", description: "Statement 1", request_key: "statement-1" } };
-            const result = await api.requestPaymentSupplierBill(1, payload);
-            assert.strictEqual(result, response);
-            assert.deepStrictEqual(requests, [
-                {
-                    method: "post",
-                    url: "http://localhost:3000/supplier_bills/1/payments/request",
                     options: { dataJ: payload }
                 }
             ]);

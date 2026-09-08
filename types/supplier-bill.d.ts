@@ -4,7 +4,6 @@ import { User } from "./user";
 import { Store } from "./store";
 import { Purchase } from "./purchase";
 import { Supplier } from "./supplier";
-import { ApprovalRequest } from "./approval-request";
 import { WorkflowEvent, WorkflowMessage, WorkflowMessagePayload } from "./workflow-message";
 
 export class SupplierBillPayment extends Base {
@@ -62,7 +61,7 @@ export class SupplierBill extends Base {
     credit_amount: number;
     balance_confirmed: 0 | 1;
     observations: string | null;
-    workflow_state: 1 | 2 | 3;
+    workflow_state: 1 | 2;
     purchase: Purchase;
     supplier: Supplier;
     billing_site: Store | null;
@@ -109,8 +108,6 @@ export declare interface SupplierBillAPI {
     createSupplierBill(payload: SupplierBillPayload): Promise<SupplierBill>;
     getSupplierBill(objectId: number, options?: APIOptions): Promise<SupplierBill>;
     updateSupplierBill(objectId: number, payload: SupplierBillPayload): Promise<SupplierBill>;
-    approveSupplierBill(objectId: number, options?: APIOptions): Promise<SupplierBill>;
-    requestSupplierBill(objectId: number, options?: APIOptions): Promise<ApprovalRequest>;
     cancelSupplierBill(objectId: number, payload: SupplierBillReasonPayload): Promise<SupplierBill>;
     reportSupplierBills(options?: APIOptions): Promise<SupplierBillReport>;
     exportSupplierBills(options?: APIOptions): Promise<string | ArrayBuffer>;
@@ -118,10 +115,6 @@ export declare interface SupplierBillAPI {
         objectId: number,
         payload: SupplierBillPaymentPayload
     ): Promise<SupplierBillPayment>;
-    requestPaymentSupplierBill(
-        objectId: number,
-        payload: SupplierBillPaymentPayload
-    ): Promise<ApprovalRequest>;
     reversePaymentSupplierBill(
         objectId: number,
         paymentId: number,

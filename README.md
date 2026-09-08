@@ -14,9 +14,9 @@ Omni Neo API for Javascript is currently licensed under the [Apache License, Ver
 
 ## Accounts Payable
 
-The client supports purchase lookup, supplier bills, manual settlement, approvals,
-attachments, reports and CSV exports. Bill creation
-references an existing purchase and preserves its stock and document records.
+The client supports purchase lookup, supplier bills, manual settlement, attachments,
+reports and CSV exports. Bill creation references an existing purchase and preserves
+its stock and document records.
 
 ```javascript
 const bill = await api.createSupplierBill({
@@ -26,7 +26,6 @@ const bill = await api.createSupplierBill({
         payment_terms_days: 30
     }
 });
-await api.approveSupplierBill(bill.object_id);
 await api.createPaymentSupplierBill(bill.object_id, {
     supplier_bill_payment: {
         entry_type: 2,
@@ -45,10 +44,8 @@ record supplier credit, a refund and credit transferred from another bill. The
 manual endpoints do not send money or invoke a payment provider. Preserve the
 request key when retrying the same registration.
 
-`getPermissionsSupplierBill()` returns server-validated action permissions. Use
-`requestSupplierBill` or `requestPaymentSupplierBill` when an approval policy
-requires a separate checker. Review with the approval-request methods; the server
-revalidates the current policy and balance when the checker approves.
+`getPermissionsSupplierBill()` returns server-validated action permissions. The
+server validates permissions and the current balance when registering a payment.
 
 Lists, reports and exports accept the existing `options.params` filters. CSV export
 requires the gateway to preserve `.csv` URLs. Workflow message uploads use the
@@ -56,6 +53,6 @@ existing `{ body, files: File[] }` payload. See the backend
 [design document](https://github.com/hivesolutions/omni/blob/feat/accounts-payable/doc/design/010-accounts_payable.md)
 for the complete settlement contract.
 
-Run `npm test` for request-contract tests and `npm run coverage` for the new purchase,
-payable and approval methods. Coverage uses c8 against the original sources through
+Run `npm test` for request-contract tests and `npm run coverage` for the new purchase
+and payable methods. Coverage uses c8 against the original sources through
 the existing Rollup source maps.
