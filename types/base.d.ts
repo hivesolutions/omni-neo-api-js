@@ -1,5 +1,4 @@
 import { API as BaseAPI, APIOptions } from "yonius";
-
 import { Customer, CustomerAPI } from "./customer";
 import { Supplier, SupplierAPI } from "./supplier";
 import { SupplierCompany, SupplierCompanyAPI } from "./supplier-company";
@@ -22,6 +21,16 @@ import {
     RepairReferencePayload,
     RepairSlip
 } from "./repair-reference";
+import { Purchase, PurchaseAPI, PurchasePayload } from "./purchase";
+import {
+    SupplierBill,
+    SupplierBillAPI,
+    SupplierBillPayload,
+    SupplierBillPayment,
+    SupplierBillPaymentPayload,
+    SupplierBillReasonPayload,
+    SupplierBillReport
+} from "./supplier-bill";
 
 export class Base {
     object_id: number;
@@ -65,6 +74,8 @@ export interface APIInterface
         SupplierAPI,
         SupplierCompanyAPI,
         SaleAPI,
+        PurchaseAPI,
+        SupplierBillAPI,
         UserAPI,
         StoreAPI,
         EntityAPI,
@@ -89,6 +100,54 @@ export declare class API extends BaseAPI implements APIInterface {
     login(username: string, password: string): Promise<Record<string, unknown>>;
     isAuth(): boolean;
     ping(): Promise<object>;
+
+    listSupplierBills(options?: APIOptions): Promise<SupplierBill[]>;
+    getPermissionsSupplierBill(options?: APIOptions): Promise<Record<string, boolean>>;
+    createSupplierBill(payload: SupplierBillPayload): Promise<SupplierBill>;
+    getSupplierBill(objectId: number, options?: APIOptions): Promise<SupplierBill>;
+    updateSupplierBill(objectId: number, payload: SupplierBillPayload): Promise<SupplierBill>;
+    cancelSupplierBill(objectId: number, payload: SupplierBillReasonPayload): Promise<SupplierBill>;
+    reportSupplierBills(options?: APIOptions): Promise<SupplierBillReport>;
+    exportSupplierBills(options?: APIOptions): Promise<string | ArrayBuffer>;
+    createPaymentSupplierBill(
+        objectId: number,
+        payload: SupplierBillPaymentPayload
+    ): Promise<SupplierBillPayment>;
+
+    reversePaymentSupplierBill(
+        objectId: number,
+        paymentId: number,
+        payload: SupplierBillReasonPayload
+    ): Promise<SupplierBillPayment>;
+
+    listMessagesSupplierBill(objectId: number, options?: APIOptions): Promise<WorkflowEvent[]>;
+    createMessageSupplierBill(
+        objectId: number,
+        payload: WorkflowMessagePayload
+    ): Promise<WorkflowMessage>;
+
+    updateMessageSupplierBill(
+        objectId: number,
+        messageId: number,
+        payload: WorkflowMessagePayload
+    ): Promise<WorkflowMessage>;
+
+    deleteMessageSupplierBill(
+        objectId: number,
+        messageId: number,
+        options?: APIOptions
+    ): Promise<{ result: string }>;
+
+    deleteFileMessageSupplierBill(
+        objectId: number,
+        messageId: number,
+        fileId: number,
+        options?: APIOptions
+    ): Promise<{ result: string }>;
+
+    listPurchases(options?: APIOptions): Promise<Purchase[]>;
+    createPurchase(payload: PurchasePayload): Promise<Purchase>;
+    getPurchase(objectId: number, options?: APIOptions): Promise<Purchase>;
 
     listSales(options?: APIOptions): Promise<Sale[]>;
     getSale(objectId: number, options?: APIOptions): Promise<Sale>;

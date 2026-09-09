@@ -8,9 +8,11 @@ import { ReturnAPI } from "./return";
 import { ProductAPI } from "./product";
 import { CustomerAPI } from "./customer";
 import { EmployeeAPI } from "./employee";
+import { PurchaseAPI } from "./purchase";
 import { SupplierAPI } from "./supplier";
 import { MerchandiseAPI } from "./merchandise";
 import { SaleSnapshotAPI } from "./sale-snapshot";
+import { SupplierBillAPI } from "./supplier-bill";
 import { InventoryLineAPI } from "./inventory-line";
 import { RepairOperationAPI } from "./repair-operation";
 import { RepairReferenceAPI } from "./repair-reference";
@@ -28,9 +30,11 @@ export class API extends mix(YoniusAPI).with(
     ProductAPI,
     CustomerAPI,
     EmployeeAPI,
+    PurchaseAPI,
     SupplierAPI,
     MerchandiseAPI,
     SaleSnapshotAPI,
+    SupplierBillAPI,
     InventoryLineAPI,
     RepairOperationAPI,
     RepairReferenceAPI,

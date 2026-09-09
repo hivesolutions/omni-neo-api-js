@@ -1,0 +1,144 @@
+import { APIOptions } from "yonius";
+import { Base, BaseDelta } from "./base";
+import { User } from "./user";
+import { Store } from "./store";
+import { Purchase } from "./purchase";
+import { Supplier } from "./supplier";
+import { WorkflowEvent, WorkflowMessage, WorkflowMessagePayload } from "./workflow-message";
+
+export class SupplierBillPayment extends Base {
+    extended_identifier: string;
+    entry_type: 1 | 2 | 3 | 4 | 5;
+    applied_amount: number;
+    application_date: number;
+    currency: string;
+    request_key: string;
+    payment_method: string;
+    reversed: 0 | 1;
+    reversal_date: number | null;
+    reversal_reason: string | null;
+    previous_balance: number;
+    resulting_balance: number;
+    settled_amount: number;
+    returned_amount: number;
+    supplier_bill: Base;
+    source_bill: Base | null;
+    supplier_return: Base | null;
+    payment: Base | null;
+    create_user: User | null;
+    modify_user: User | null;
+}
+
+export class SupplierBillPaymentDelta extends BaseDelta {
+    entry_type?: 1 | 2 | 3 | 4 | 5;
+    applied_amount: number;
+    application_date?: number;
+    currency: string;
+    description: string;
+    request_key: string;
+    payment_method?: "BankTransferPayment" | "CashPayment" | "CheckPayment" | "CustomPayment";
+    source_bill?: { object_id: number };
+    supplier_return?: { object_id: number };
+}
+
+export class SupplierBillPaymentPayload {
+    supplier_bill_payment: SupplierBillPaymentDelta;
+}
+
+export class SupplierBill extends Base {
+    extended_identifier: string;
+    bill_date: number;
+    due_date: number;
+    reference: string | null;
+    payment_terms_days: number;
+    currency: string;
+    reference_currency: string | null;
+    exchange_rate: number | null;
+    amount_vat: number;
+    paid_amount: number;
+    adjusted_amount: number;
+    outstanding_amount: number;
+    credit_amount: number;
+    balance_confirmed: 0 | 1;
+    observations: string | null;
+    workflow_state: 1 | 2;
+    purchase: Purchase;
+    supplier: Supplier;
+    billing_site: Store | null;
+    settlement_state: "unconfirmed" | "unpaid" | "partially_paid" | "paid";
+    aging_bucket: "current" | "1-30" | "31-60" | "61-90" | "90+";
+    overdue: boolean;
+    bill_payments?: SupplierBillPayment[];
+}
+
+export class SupplierBillDelta extends BaseDelta {
+    purchase?: { object_id: number };
+    bill_date?: number;
+    due_date?: number;
+    reference?: string | null;
+    payment_terms_days?: number;
+    observations?: string | null;
+}
+
+export class SupplierBillPayload {
+    supplier_bill: SupplierBillDelta;
+}
+
+export class SupplierBillReasonPayload {
+    reason: string;
+}
+
+export class SupplierBillBalance {
+    supplier: Supplier;
+    currency: string;
+    outstanding_amount: number;
+    credit_amount: number;
+    paid_amount: number;
+    buckets: Record<"current" | "1-30" | "31-60" | "61-90" | "90+", number>;
+}
+
+export class SupplierBillReport {
+    balances: SupplierBillBalance[];
+    unconfirmed_count: number;
+}
+
+export declare interface SupplierBillAPI {
+    listSupplierBills(options?: APIOptions): Promise<SupplierBill[]>;
+    getPermissionsSupplierBill(options?: APIOptions): Promise<Record<string, boolean>>;
+    createSupplierBill(payload: SupplierBillPayload): Promise<SupplierBill>;
+    getSupplierBill(objectId: number, options?: APIOptions): Promise<SupplierBill>;
+    updateSupplierBill(objectId: number, payload: SupplierBillPayload): Promise<SupplierBill>;
+    cancelSupplierBill(objectId: number, payload: SupplierBillReasonPayload): Promise<SupplierBill>;
+    reportSupplierBills(options?: APIOptions): Promise<SupplierBillReport>;
+    exportSupplierBills(options?: APIOptions): Promise<string | ArrayBuffer>;
+    createPaymentSupplierBill(
+        objectId: number,
+        payload: SupplierBillPaymentPayload
+    ): Promise<SupplierBillPayment>;
+    reversePaymentSupplierBill(
+        objectId: number,
+        paymentId: number,
+        payload: SupplierBillReasonPayload
+    ): Promise<SupplierBillPayment>;
+    listMessagesSupplierBill(objectId: number, options?: APIOptions): Promise<WorkflowEvent[]>;
+    createMessageSupplierBill(
+        objectId: number,
+        payload: WorkflowMessagePayload
+    ): Promise<WorkflowMessage>;
+    updateMessageSupplierBill(
+        objectId: number,
+        messageId: number,
+        payload: WorkflowMessagePayload
+    ): Promise<WorkflowMessage>;
+    deleteMessageSupplierBill(
+        objectId: number,
+        messageId: number,
+        options?: APIOptions
+    ): Promise<{ result: string }>;
+    deleteFileMessageSupplierBill(
+        objectId: number,
+        messageId: number,
+        fileId: number,
+        options?: APIOptions
+    ): Promise<{ result: string }>;
+}
