@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+* CI coverage summaries and downloadable reports
 * Accounts payable usage guide and documentation index
 * Support for supplier bills, manual purchase payments, historical adjustments, credits, refunds, attachments and payable reports
 * Support for the `Customer` entity
@@ -28,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-*
+* Coverage filters correctly match source map file URLs
 
 ## [0.1.13] - 2024-02-24
 

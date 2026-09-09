@@ -16,3 +16,30 @@ jobs:
       - run: npm run build
       - run: npm run lint
       - run: npm test
+  coverage:
+    name: Coverage
+    runs-on: ubuntu-latest
+    container: node:22
+    steps:
+      - uses: actions/checkout@v6
+      - run: npm install
+      - run: npm run coverage
+      - name: Generate coverage report
+        id: report
+        if: ${{ !cancelled() && hashFiles('coverage/tmp/*.json') != '' }}
+        run: npm run coverage-report
+      - name: Upload coverage report
+        id: coverage
+        if: ${{ !cancelled() && steps.report.outcome == 'success' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage
+          path: |
+            coverage/
+            !coverage/tmp/**
+          if-no-files-found: error
+      - name: Publish coverage summary
+        if: ${{ !cancelled() && steps.report.outcome == 'success' }}
+        env:
+          COVERAGE_ARTIFACT_URL: ${{ steps.coverage.outputs.artifact-url }}
+        run: node .github/coverage.cjs >> "$GITHUB_STEP_SUMMARY"
