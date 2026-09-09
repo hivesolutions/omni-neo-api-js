@@ -43,9 +43,8 @@ jobs:
             coverage/
             !coverage/tmp/**
           if-no-files-found: error
-          include-hidden-files: true
       - name: Publish coverage summary
         if: ${{ !cancelled() && steps.report.outputs.generated == 'true' }}
         env:
           COVERAGE_ARTIFACT_URL: ${{ steps.coverage.outputs.artifact-url }}
-        run: node .github/coverage.cjs >> "$GITHUB_STEP_SUMMARY"
+        run: node scripts/coverage.cjs >> "$GITHUB_STEP_SUMMARY"

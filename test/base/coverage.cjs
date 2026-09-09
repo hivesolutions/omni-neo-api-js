@@ -23,7 +23,7 @@ describe("Coverage", function() {
                 "https://github.com/hivesolutions/omni-neo-api-js/actions/runs/1/artifacts/2"
         };
         run = () =>
-            spawnSync(process.execPath, [path.resolve(__dirname, "../../.github/coverage.cjs")], {
+            spawnSync(process.execPath, [path.resolve(__dirname, "../../scripts/coverage.cjs")], {
                 cwd: directory,
                 env: env,
                 encoding: "utf8"

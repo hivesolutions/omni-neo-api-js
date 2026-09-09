@@ -1,3 +1,19 @@
+/**
+ * Generates a Markdown coverage table from coverage/coverage-summary.json.
+ *
+ * Run from the repository root with GITHUB_SERVER_URL, GITHUB_REPOSITORY and
+ * GITHUB_SHA set for source links. GitHub Actions supplies these automatically.
+ * COVERAGE_ARTIFACT_URL optionally adds a link to the downloadable report.
+ *
+ *     npm run coverage
+ *     npm run coverage-report
+ *     node scripts/coverage.cjs
+ *
+ * In GitHub Actions, append the output to the job summary:
+ *
+ *     node scripts/coverage.cjs >> "$GITHUB_STEP_SUMMARY"
+ */
+
 const { readFileSync } = require("fs");
 const { relative } = require("path");
 
