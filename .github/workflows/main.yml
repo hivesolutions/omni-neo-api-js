@@ -26,11 +26,16 @@ jobs:
       - run: npm run coverage
       - name: Generate coverage report
         id: report
-        if: ${{ !cancelled() && hashFiles('coverage/tmp/*.json') != '' }}
-        run: npm run coverage-report
+        if: ${{ !cancelled() }}
+        run: |
+          set -- coverage/tmp/*.json
+          if [ -f "$1" ]; then
+            npm run coverage-report
+            echo "generated=true" >> "$GITHUB_OUTPUT"
+          fi
       - name: Upload coverage report
         id: coverage
-        if: ${{ !cancelled() && steps.report.outcome == 'success' }}
+        if: ${{ !cancelled() && steps.report.outputs.generated == 'true' }}
         uses: actions/upload-artifact@v7
         with:
           name: coverage
@@ -38,8 +43,9 @@ jobs:
             coverage/
             !coverage/tmp/**
           if-no-files-found: error
+          include-hidden-files: true
       - name: Publish coverage summary
-        if: ${{ !cancelled() && steps.report.outcome == 'success' }}
+        if: ${{ !cancelled() && steps.report.outputs.generated == 'true' }}
         env:
           COVERAGE_ARTIFACT_URL: ${{ steps.coverage.outputs.artifact-url }}
         run: node .github/coverage.cjs >> "$GITHUB_STEP_SUMMARY"
