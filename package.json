@@ -48,7 +48,7 @@
         "upgrade": "npx sort-package-json && ncu -u",
         "watch": "rollup -c -w",
         "pretest": "npm run build",
-        "coverage": "npm run build && c8 --all --exclude-after-remap --include=\"**/js/supplier-bill.js\" --include=\"**/js/purchase.js\" --include=\"**/scripts/coverage.cjs\" --reporter=text --reporter=cobertura --check-coverage --lines=90 --functions=90 mocha --recursive",
+        "coverage": "npm run build && c8 --all --exclude-after-remap --include=\"**/js/supplier-bill.js\" --include=\"**/js/purchase.js\" --include=\"**/js/workflow-message.js\" --include=\"**/scripts/coverage.cjs\" --reporter=text --reporter=cobertura --check-coverage --lines=90 --functions=90 mocha --recursive",
         "coverage-report": "c8 report --all --exclude-after-remap --include=\"**/js/**/*.js\" --include=\"**/scripts/coverage.cjs\" --reporter=text --reporter=html --reporter=json-summary --reporter=cobertura"
     },
     "dependencies": {

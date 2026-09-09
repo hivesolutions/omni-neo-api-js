@@ -60,6 +60,6 @@ Workflow message uploads use the existing `{ body, files: File[] }` payload.
 
 ## Testing
 
-Run `npm test` for request-contract tests and `npm run coverage` for the new purchase and payable methods. Coverage uses c8 against the original sources through the existing Rollup source maps and requires at least 90% line and function coverage for purchases, supplier bills and the coverage summary generator.
+Run `npm test` for request-contract tests and `npm run coverage` for the new purchase and payable methods. Coverage uses c8 against the original sources through the existing Rollup source maps and requires at least 90% line and function coverage for purchases, supplier bills, workflow messages and the coverage summary generator.
 
 The Coverage job in [GitHub Actions](https://github.com/hivesolutions/omni-neo-api-js/actions/workflows/main.yml) publishes a table for all client source files, including legacy code, and links to the tested source. Download the coverage artifact and open `index.html` to explore covered and uncovered lines; JSON and Cobertura reports are included. Reports are published even when tests or coverage checks fail, provided coverage data was produced. Run `npm run coverage-report` after `npm run coverage` to generate the same reports locally.

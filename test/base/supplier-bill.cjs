@@ -307,6 +307,18 @@ describe("SupplierBill", function() {
                 }),
                 error
             );
+            await assert.rejects(
+                api.updateMessageSupplierBill(1, 2, {
+                    files: [
+                        {
+                            arrayBuffer: async () => {
+                                throw error;
+                            }
+                        }
+                    ]
+                }),
+                error
+            );
             assert.strictEqual(requests.length, 0);
         });
     });

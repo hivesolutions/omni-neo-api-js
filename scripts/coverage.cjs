@@ -23,7 +23,7 @@ const source = `${repository}/blob/${process.env.GITHUB_SHA}`;
 const rows = [
     "## Code Coverage",
     "",
-    "Coverage includes all client source files and the coverage summary generator. The 90% line and function requirement applies to purchases, supplier bills and the summary generator.",
+    "Coverage includes all client source files and the coverage summary generator. The 90% line and function requirement applies to purchases, supplier bills, workflow messages and the summary generator.",
     "",
     "| File | Statements | Branches | Functions | Lines |",
     "| --- | ---: | ---: | ---: | ---: |"

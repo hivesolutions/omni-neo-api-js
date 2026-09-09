@@ -33,7 +33,19 @@ describe("Purchase", function() {
 
     describe("#createPurchase()", function() {
         it("should preserve the request and response contract", async () => {
-            const payload = { purchase_transaction: { reference: "statement-1" } };
+            const payload = {
+                purchase_transaction: {
+                    supplier: { object_id: 7 },
+                    purchase_lines: [
+                        {
+                            merchandise: { object_id: 10 },
+                            quantity: 2,
+                            unit_price: { value: 15, currency: "EUR" }
+                        }
+                    ]
+                },
+                document: { description: "Supplier invoice" }
+            };
             const result = await api.createPurchase(payload);
             assert.strictEqual(result, response);
             assert.deepStrictEqual(requests, [
