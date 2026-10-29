@@ -6,6 +6,7 @@ import { EntityAPI } from "./entity";
 import { RepairAPI } from "./repair";
 import { ReturnAPI } from "./return";
 import { ProductAPI } from "./product";
+import { RestockAPI } from "./restock";
 import { CustomerAPI } from "./customer";
 import { EmployeeAPI } from "./employee";
 import { PurchaseAPI } from "./purchase";
@@ -28,6 +29,7 @@ export class API extends mix(YoniusAPI).with(
     RepairAPI,
     ReturnAPI,
     ProductAPI,
+    RestockAPI,
     CustomerAPI,
     EmployeeAPI,
     PurchaseAPI,

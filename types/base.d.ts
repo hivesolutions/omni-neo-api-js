@@ -10,6 +10,7 @@ import { Entity, EntityAPI, EntityPayload } from "./entity";
 import { Repair, RepairAPI, RepairPayload } from "./repair";
 import { Return, ReturnAPI } from "./return";
 import { Product, ProductAPI, ProductPayload } from "./product";
+import { Restock, RestockAPI, RestockPayload, RestockStocks } from "./restock";
 import { Merchandise, MerchandisePayload, MerchandiseAPI } from "./merchandise";
 import { SaleSnapshot, SaleSnapshotAPI } from "./sale-snapshot";
 import { InventoryLine, InventoryLineAPI } from "./inventory-line";
@@ -82,6 +83,7 @@ export interface APIInterface
         RepairAPI,
         ReturnAPI,
         ProductAPI,
+        RestockAPI,
         EmployeeAPI,
         MerchandiseAPI,
         SaleSnapshotAPI,
@@ -189,6 +191,14 @@ export declare class API extends BaseAPI implements APIInterface {
     listProducts(options?: APIOptions): Promise<Product[]>;
     getProduct(objectId: number, options?: APIOptions): Promise<Product>;
     updateProduct(payload: ProductPayload): Promise<Product>;
+
+    listRestocks(options?: APIOptions): Promise<Restock[]>;
+    createRestock(payload: RestockPayload): Promise<Restock>;
+    getRestock(objectId: number, options?: APIOptions): Promise<Restock>;
+    updateRestock(objectId: number, payload: RestockPayload): Promise<Restock>;
+    getStocksRestock(objectId: number, options?: APIOptions): Promise<RestockStocks>;
+    generateRestock(objectId: number, options?: APIOptions): Promise<Restock>;
+    cancelRestock(objectId: number, options?: APIOptions): Promise<Restock>;
 
     listEmployees(options?: APIOptions): Promise<Employee[]>;
     createEmployee(payload: EmployeePayload): Promise<Employee>;

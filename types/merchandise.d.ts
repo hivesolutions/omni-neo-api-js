@@ -5,6 +5,7 @@ export class Merchandise extends NamedNode {
     company_product_code: string;
     barcode: string;
     ean: string;
+    quantity_places?: number;
 }
 
 export class MerchandiseDelta extends NamedNodeDelta {
