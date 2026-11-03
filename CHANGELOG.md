@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Optional `merchandise` relation on `RepairOperation` linking the repair to a catalogue product
 * Support for the restocks of the stores, with the stock lookup of their products, the generation of their transfers and their cancel - [#323](https://github.com/hivesolutions/omni/issues/323)
 * Status of the stores, open, closed or replaced, and the decimal places of the quantities of the merchandise - [#323](https://github.com/hivesolutions/omni/issues/323)
+* Secondary EAN of the merchandise, with both EANs in the merchandise updates - [#352](https://github.com/hivesolutions/omni/issues/352)
 
 ### Changed
 
