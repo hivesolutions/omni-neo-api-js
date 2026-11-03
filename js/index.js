@@ -9,6 +9,7 @@ export * from "./inventory-line";
 export * from "./purchase";
 export * from "./repair";
 export * from "./repair-operation";
+export * from "./restock";
 export * from "./return";
 export * from "./merchandise";
 export * from "./repair-reference";
