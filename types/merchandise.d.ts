@@ -5,12 +5,15 @@ export class Merchandise extends NamedNode {
     company_product_code: string;
     barcode: string;
     ean: string;
+    ean_secondary?: string;
     quantity_places?: number;
 }
 
 export class MerchandiseDelta extends NamedNodeDelta {
     company_product_code?: string;
     barcode?: string;
+    ean?: string;
+    ean_secondary?: string;
 }
 
 export class MerchandisePayload {
